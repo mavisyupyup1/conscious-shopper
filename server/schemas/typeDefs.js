@@ -8,6 +8,7 @@ const typeDefs = gql`
     friendCount: Int
     thoughts: [Thought]
     friends: [User]
+    orders: [Order]
   }
 
   type Thought {
@@ -31,12 +32,18 @@ const typeDefs = gql`
     user: User
   }
 
+  type Checkout{
+    session:ID
+  }
+
   type Query {
     me: User
     users: [User]
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
+    order(_id: ID!): Order
+    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
