@@ -112,7 +112,7 @@ const SplitForm = () => {
         />
       </label>
       <button type="submit" disabled={!stripe}>
-        Pay
+        Submit
       </button>
     </form>
   );

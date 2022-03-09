@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import CardForm from "../components/CardForm";
 import SplitForm from "../components/SplitForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -13,8 +12,9 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
-    account: 'free'
+    account:'free'
   });
+
   const [addUser, { error }] = useMutation(ADD_USER);
 
   // update state based on form input changes
@@ -30,7 +30,6 @@ const Signup = () => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const { data } = await addUser({
         variables: { ...formState },
@@ -41,6 +40,7 @@ const Signup = () => {
       console.error(e);
     }
   };
+
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-md-6">
@@ -76,11 +76,11 @@ const Signup = () => {
                 onChange={handleChange}
               />
              <label for="account">Choose An Account Type:</label>
-<select className="form-input" name="account" id="account">
+<select className="form-input" name="account" id="account" onChange={handleChange}>
   <option value="free">Customer Account (Free)</option>
   <option value="paid">Business Account ($1.99/months)</option>
 </select>
-{formState.account ="paid" ? (
+{formState.account=== "paid" ? (
   <>
    <Elements stripe={stripePromise}>
 <SplitForm/>
@@ -90,11 +90,8 @@ const Signup = () => {
 <button className="btn d-block w-100" type="submit">
 Submit
 </button>
-)}
-</form>
-
-
-             
+)} 
+</form>          
             {error && <div>Signup failed</div>}
           </div>
         </div>
