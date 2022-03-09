@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
 const Signup = () => {
@@ -71,6 +70,13 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
+             <label for="account">Choose An Account Type:</label>
+
+<select className="form-input" name="account" id="account">
+  <option value="free">Customer Account (Free)</option>
+  <option value="paid">Business Account ($1.99/months)</option>
+</select>
+
               <button className="btn d-block w-100" type="submit">
                 Submit
               </button>
