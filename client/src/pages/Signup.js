@@ -30,6 +30,7 @@ const Signup = () => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const { data } = await addUser({
         variables: { ...formState },
@@ -80,17 +81,17 @@ const Signup = () => {
   <option value="free">Customer Account (Free)</option>
   <option value="paid">Business Account ($1.99/months)</option>
 </select>
-{formState.account=== "paid" ? (
+{formState.account=== "paid"  &&
   <>
    <Elements stripe={stripePromise}>
 <SplitForm/>
 </Elements>
 </>
-):( 
+}
 <button className="btn d-block w-100" type="submit">
-Submit
+{formState.account=== "paid" ?(<span>Pay and Submit</span>):(<span>Submit</span>)}
+{/* Submit */}
 </button>
-)} 
 </form>          
             {error && <div>Signup failed</div>}
           </div>

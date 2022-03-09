@@ -111,9 +111,7 @@ const SplitForm = () => {
           }}
         />
       </label>
-      <button type="submit" disabled={!stripe}>
-        Submit
-      </button>
+      
     </form>
   );
 };
