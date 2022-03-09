@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import CardForm from "../components/CardForm";
+import SplitForm from "../components/SplitForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 const stripePromise = loadStripe("pk_test_GBMXjkiXmlRawJCb1FG8wzb100yBMmGIrm");
@@ -79,19 +80,21 @@ const Signup = () => {
   <option value="free">Customer Account (Free)</option>
   <option value="paid">Business Account ($1.99/months)</option>
 </select>
-{
-
- <Elements stripe={stripePromise}>
-<CardForm/>
+{formState.account ="paid" ? (
+  <>
+   <Elements stripe={stripePromise}>
+<SplitForm/>
 </Elements>
-}
+</>
+):( 
+<button className="btn d-block w-100" type="submit">
+Submit
+</button>
+)}
+</form>
 
 
-              <button className="btn d-block w-100" type="submit">
-                Submit
-              </button>
-            </form>
-
+             
             {error && <div>Signup failed</div>}
           </div>
         </div>
