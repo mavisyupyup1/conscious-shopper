@@ -1,13 +1,12 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
 const dateFormat = require('../utils/dateFormat');
 
-const thoughtSchema = new Schema(
+const businessSchema = new Schema(
   {
     title: {
       type: String,
-      required: 'You need to leave a thought!',
-      minlength: 1,
+      required: true,
+      minlength: [ 2, 'Provide a legal name for your business!!' ],
       maxlength: 280
     },
     createdAt: {
@@ -17,53 +16,61 @@ const thoughtSchema = new Schema(
     },
    location: {
       type: String,
+      unique: true,
       required: true
     },
     links: [{
-        type: String,
-        required: true
+        type: String
       }],
-      phone: {
-        type: String,
-        required: true
-      },
-      description: {
-        type: String,
-        required: true
-      },
-
-      image: [
-          {
-        type: String,
-        required: true
+    phone: {
+      type: String,
+      required: true,
+      match: [/^([\d+]{3})[\.-]+([\d+]{3})[\.-]+([\d+]{4})$/, "Provide a valid phone number in `555-555-5555` format"]
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    image: [
+      {
+        type: String
       }
     ],
-
     blackOwned: {
         type: Boolean,
         required: true
       },
 
-     womenOwned: {
+    womenOwned: {
         type: Boolean,
         required: true
       },
-    thoughts:[thoughtSchema],
-    reactions: [reactionSchema],
-    
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ],
+    votes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Vote'
+      }
+    ]
   },
   {
     toJSON: {
+      virtuals: true,
       getters: true
     },
     
   }
 );
 //need to figure out how to do upvote and downvote (optional)
-thoughtSchema.virtual('voteCount').get(function() {
-  return this.reactions.length;
+businessSchema.virtual('voteCount').get(function() {
+  return this.votes.length
 });
 
-const Thought = model('Thought', thoughtSchema);
+const Business = model('Business', businessSchema);
 
-module.exports = Thought;
+module.exports = Business;

@@ -37,6 +37,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
+    ],
+    votes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Vote'
+      }
     ]
   },
   {
