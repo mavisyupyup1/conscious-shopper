@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import CardForm from "../components/CardForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const stripePromise = loadStripe("pk_test_GBMXjkiXmlRawJCb1FG8wzb100yBMmGIrm");
 
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
     email: '',
     password: '',
+    account: 'free'
   });
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -35,7 +40,6 @@ const Signup = () => {
       console.error(e);
     }
   };
-
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-md-6">
@@ -71,11 +75,17 @@ const Signup = () => {
                 onChange={handleChange}
               />
              <label for="account">Choose An Account Type:</label>
-
 <select className="form-input" name="account" id="account">
   <option value="free">Customer Account (Free)</option>
   <option value="paid">Business Account ($1.99/months)</option>
 </select>
+{
+
+ <Elements stripe={stripePromise}>
+<CardForm/>
+</Elements>
+}
+
 
               <button className="btn d-block w-100" type="submit">
                 Submit
