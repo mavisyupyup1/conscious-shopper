@@ -20,6 +20,11 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+    accountType: {
+      type: String,
+      enum: ['business', 'personal'],
+      default: 'personal'
+    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,

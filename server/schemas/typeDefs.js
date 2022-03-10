@@ -6,14 +6,33 @@ const typeDefs = gql`
     username: String
     email: String
     friendCount: Int
+    accountType: String
+    business: [Business]
     thoughts: [Thought]
     friends: [User]
+    votes: [Vote]
+  }
+
+  type Business {
+    _id: ID
+    title: String
+    createdAt: String
+    location: String
+    links: [String]
+    phone: String
+    description: String
+    image: [String]
+    blackOwned: Boolean
+    womenOwned: Boolean
+    thoughts: [Thought]
+    votes: [Vote]
   }
 
   type Thought {
     _id: ID
     thoughtText: String
     createdAt: String
+    userId: ID
     username: String
     reactionCount: Int
     reactions: [Reaction]
@@ -24,6 +43,13 @@ const typeDefs = gql`
     reactionBody: String
     createdAt: String
     username: String
+  }
+
+  type Vote {
+    _id: ID
+    voteType: String
+    userId: User{_id:ID}
+    businessId: Business{_id:ID}
   }
 
   type Auth {

@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const voteSchema = new Schema(
     {
-        vote: {
+        voteType: {
             type: String,
             enum: ['upVote', 'downVote'],
             default: 'upVote'
@@ -22,6 +22,6 @@ const voteSchema = new Schema(
     }
 );
 
-const Vote = model('Vote', voteSchema)
+const Vote = model('Vote', voteSchema);
 
 module.exports = Vote;
