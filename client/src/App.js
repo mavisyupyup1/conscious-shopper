@@ -17,6 +17,10 @@ import NoMatch from './pages/NoMatch';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import { Elements } from '@stripe/react-stripe-js';
+import PaymentForm from "./components/PaymentForm";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe("pk_test_51KaouJLvQuwH79AnN7yEfoHv5B2ecn6fLOIgKx1siq59pTuioxmpCYDGsAMZtGWZ6eI63rSU9ckt9DZCPVjYNVnZ00iGHVuw44");
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -48,6 +52,9 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route path="/signup/pay" component={()=>{return <Elements stripe={stripePromise}>
+<PaymentForm/>
+</Elements>}} />
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/thought/:id" component={SingleThought} />
               <Route component={NoMatch} />

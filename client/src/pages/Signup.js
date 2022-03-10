@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+           import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import SplitForm from "../components/SplitForm";
+import PaymentForm from "../components/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-const stripePromise = loadStripe("pk_test_GBMXjkiXmlRawJCb1FG8wzb100yBMmGIrm");
+import {Redirect} from "react-router-dom"
+
+const stripePromise = loadStripe("pk_test_51KaouJLvQuwH79AnN7yEfoHv5B2ecn6fLOIgKx1siq59pTuioxmpCYDGsAMZtGWZ6eI63rSU9ckt9DZCPVjYNVnZ00iGHVuw44");
+
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -14,7 +17,7 @@ const Signup = () => {
     password: '',
     account:'free'
   });
-
+ const[paidUserSignedUp,setPaidUserSignedUp]=useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
 
   // update state based on form input changes
@@ -35,8 +38,19 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
+if(formState.account=== "free"){
+  Auth.login(data.addUser.token);
+}
+else if(formState.account=== "paid"){
+  console.log("paid account")
+  setPaidUserSignedUp(true)
 
-      Auth.login(data.addUser.token);
+} 
+else {
+  throw new Error("Content State Unknown User Choice")
+}
+     
+
     } catch (e) {
       console.error(e);
     }
@@ -76,18 +90,18 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
-             <label for="account">Choose An Account Type:</label>
+             <label htmlFor="account">Choose An Account Type:</label>
 <select className="form-input" name="account" id="account" onChange={handleChange}>
   <option value="free">Customer Account (Free)</option>
   <option value="paid">Business Account ($1.99/months)</option>
 </select>
-{formState.account=== "paid"  &&
+{/* {formState.account=== "paid"  &&
   <>
    <Elements stripe={stripePromise}>
-<SplitForm/>
+<PaymentForm/>
 </Elements>
 </>
-}
+} */}
 <button className="btn d-block w-100" type="submit">
 {formState.account=== "paid" ?(<span>Pay and Submit</span>):(<span>Submit</span>)}
 {/* Submit */}
@@ -97,6 +111,9 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      {
+        paidUserSignedUp && <Redirect to='/signup/pay'/>
+      }
     </main>
   );
 };

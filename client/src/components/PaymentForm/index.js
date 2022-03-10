@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo , useState} from "react";
 import {
   useStripe,
   useElements,
@@ -8,6 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 import useResponsiveFontSize from "../../utils/useResponsiveFontSize";
+import axios from "axios"
 
 const useOptions = () => {
   const fontSize = useResponsiveFontSize();
@@ -38,6 +39,7 @@ const SplitForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const options = useOptions();
+  const [success,setSuccess]=useState(false)
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -48,15 +50,31 @@ const SplitForm = () => {
       return;
     }
 
-    const payload = await stripe.createPaymentMethod({
+    const [error,paymentMethod] = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardNumberElement)
     });
-    console.log("[PaymentMethod]", payload);
+   if(!error) try{
+     const {id}=paymentMethod
+    const response = await axios.post("/payment", {
+     amount:199,
+     id})
+
+     if(response.data.success){
+       console.log("Successful payment")
+       setSuccess(true)
+     }
+    } catch(error){
+      console.log("Error", error)
+   } else {
+     console.log(error.message)
+   }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+    {!success ?
+   ( <form onSubmit={handleSubmit}>
       <label>
         Card number
         <CardNumberElement
@@ -111,9 +129,19 @@ const SplitForm = () => {
           }}
         />
       </label>
-      
-    </form>
-  );
+      <button className="btn d-block w-100" type="submit">
+Pay
+
+</button>
+    </form>):
+   ( <div>
+      <h2> You have successfully signed up as a business owner. 
+      You will be redirected to profile page in 3 seconds. </h2>
+    </div>)
+};
+
+
+</>)
 };
 
 export default SplitForm;
