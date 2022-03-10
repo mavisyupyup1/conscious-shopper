@@ -13,7 +13,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/Header';
 // import Footer from './components/Footer';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import SingleThought from './pages/SingleThought';
@@ -28,7 +28,7 @@ import BusinessReview from './pages/BusinessReview';
 
 
 //IMPORT COMPONENTS
-import Navbar from './components/Navbar';
+import NavbarMain from './components/NavbarMain';
 import HeroMain from './components/HeroMain';
 import HeroBusiness from './components/HeroBusiness';
 import Top5Card from './components/Top5Card';
@@ -60,10 +60,11 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
+          <NavbarMain></NavbarMain>
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={HomeMain} />
+              <Route exact path="/search" component={MainSearch} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
