@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,8 +12,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
-
+// import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
@@ -18,9 +20,25 @@ import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 
+//IMPORT PAGES
+import HomeMain from './pages/HomeMain';
+import MainSearch from './pages/MainSearch';
+import BusinessPage from './pages/BusinessPage';
+import BusinessReview from './pages/BusinessReview';
+
+
+//IMPORT COMPONENTS
+import Navbar from './components/Navbar';
+import HeroMain from './components/HeroMain';
+import HeroBusiness from './components/HeroBusiness';
+import Top5Card from './components/Top5Card';
+import SearchBCard from './components/SearchBCard';
+import Footer from './components/Footer';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
