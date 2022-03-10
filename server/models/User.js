@@ -22,6 +22,7 @@ const userSchema = new Schema(
     },
     accountType: {
       type: String,
+      required: true,
       enum: ['business', 'personal'],
       default: 'personal'
     },

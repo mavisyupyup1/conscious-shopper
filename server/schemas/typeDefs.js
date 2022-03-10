@@ -33,6 +33,7 @@ const typeDefs = gql`
     thoughtText: String
     createdAt: String
     userId: ID
+    businessId: ID
     username: String
     reactionCount: Int
     reactions: [Reaction]
@@ -48,8 +49,8 @@ const typeDefs = gql`
   type Vote {
     _id: ID
     voteType: String
-    userId: User{_id:ID}
-    businessId: Business{_id:ID}
+    userId: ID!
+    businessId: ID!
   }
 
   type Auth {
@@ -63,17 +64,25 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
+    allBusiness: [Business] 
+    business(title: String!): Business
+  }
+
+  input userCreate {
+    username: String!
+    email: String!
+    password: String!
+    accountType: String!
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(userCreate: userCreate!): Auth
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
   }
 `;
 
-//sche
 
 module.exports = typeDefs;
