@@ -16,7 +16,6 @@ const NavbarMain = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                     <Nav>
-                        
                         <Button variant="outline-secondary" className="me-2">
                             <Nav.Link href="/login">Login</Nav.Link>
                         </Button>
