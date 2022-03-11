@@ -18,7 +18,7 @@ const HeroMain = () => {
                 />
                 <Carousel.Caption>
                 <FloatingLabel style={{ color: "green" }} controlId="floatingInput" label="Search a CITY to shop concious!" className="mb-3">
-                    <Form.Control type="test" placeholder="search" />
+                    <Form.Control type="test" placeholder="search" className="shadow p-3 mb-5 bg-body rounded"/>
                 </FloatingLabel>
                 <h3>You are one step away from finding the right business</h3>
                 </Carousel.Caption>
