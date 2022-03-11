@@ -20,7 +20,7 @@ return (
             </Col>
         </Row>
         <Row>
-        {businesses.map(data => (
+        {businesses.slice(0, 4).map(data => (
           <Col xs={3} className="mb-5" key={`${data.id}`}>
             <Top5Card data={data} setOrdered={true} />
           </Col>

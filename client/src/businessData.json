@@ -2,29 +2,43 @@
     {
       "id": 1,
       "name": "NYC SHOP 1",
-      "image": "https://picsum.photos/200",
+      "image": "https://picsum.photos/300/200",
       "desc": "Description Description Description Description Description Description Description Description Description ",
       "type": "Minority"
     },
     {
       "id": 2,
       "name": "NYC SHOP 2",
-      "image": "https://picsum.photos/200",
+      "image": "https://picsum.photos/300/200",
       "desc": "Description Description Description Description Description Description Description Description Description ",
       "type": "Closing"
     },
     {
       "id": 3,
       "name": "NYC SHOP 2",
-      "image": "https://picsum.photos/200",
+      "image": "https://picsum.photos/300/200",
       "desc": "Description Description Description Description Description Description Description Description Description ",
       "type": "New"
     },
     {
       "id": 4,
       "name": "NYC SHOP 1",
-      "image": "https://picsum.photos/200",
+      "image": "https://picsum.photos/300/200",
       "desc": "Description Description Description Description Description Description Description Description Description ",
       "type": "Mom & Dad"
-    }
+    },
+    {
+        "id": 5,
+        "name": "NYC SHOP 1",
+        "image": "https://picsum.photos/300/200",
+        "desc": "Description Description Description Description Description Description Description Description Description ",
+        "type": "Mom & Dad"
+      },
+      {
+        "id": 6,
+        "name": "NYC SHOP 1",
+        "image": "https://picsum.photos/300/200",
+        "desc": "Description Description Description Description Description Description Description Description Description ",
+        "type": "Mom & Dad"
+      }
   ]

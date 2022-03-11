@@ -59,21 +59,22 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className=" ">
           <NavbarMain></NavbarMain>
-          <div className="container">
+          <div className="">
             <Switch>
               <Route exact path="/" component={HomeMain} />
               <Route exact path="/search" component={MainSearch} />
+              <Route exact path="/bpage" component={BusinessPage} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
-              <Route exact path="/thought/:id" component={SingleThought} />
+              {/* <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/thought/:id" component={SingleThought} /> */}
 
               <Route component={NoMatch} />
             </Switch>
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

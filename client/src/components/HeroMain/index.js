@@ -4,6 +4,8 @@ import { Carousel, Container, Row, Form, FloatingLabel, Overlay } from 'react-bo
 
 import shopimage from '../../assets/images/shop1.jpeg'
 
+
+
 const HeroMain = () => {
 
     return (

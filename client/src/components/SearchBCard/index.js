@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Image} from 'react-bootstrap';
+
+
+const imgcard = {
+    width: "200px",
+    objectFit: "cover"
+    
+}
 
 
 const SearchBCard = ({ data, setOrdered }) => {
@@ -12,9 +19,10 @@ return (
         <Row className='border border-dark border-5 rounded'>
 
             <Col xs={3} className='border border-dark border-2'> 
-                <img src={data.image} ></img>
+                {/* <img src={data.image} style={imgcard}></img> */}
+                <Image fluid src={data.image}></Image>
             </Col>
-            <Col xs={9}>
+            <Col xs={8}>
                 <Row>
                     <h3>{data.desc}</h3>
                 </Row>
@@ -23,10 +31,14 @@ return (
                         <Button>Location 📍</Button>
                     </Col>
                     <Col>
-                        <Button>PHONE NUMBER 📞</Button>
+                        <Button>NUMBER 📞</Button>
                     </Col>
                     <Col>
                         <Button>WEBSITE 🖥</Button>
+                    
+                    </Col>
+                    <Col>
+                        <Button>MORE... 🗄</Button>
                     
                     </Col>
                 </Row>
