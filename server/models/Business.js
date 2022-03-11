@@ -31,6 +31,10 @@ const businessSchema = new Schema(
       type: String,
       required: true
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     image: [
       {
         type: String
@@ -40,7 +44,6 @@ const businessSchema = new Schema(
         type: Boolean,
         required: true
       },
-
     womenOwned: {
         type: Boolean,
         required: true
@@ -70,6 +73,8 @@ const businessSchema = new Schema(
 businessSchema.virtual('voteCount').get(function() {
   return this.votes.length
 });
+
+
 
 const Business = model('Business', businessSchema);
 

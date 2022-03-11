@@ -10,14 +10,17 @@ const voteSchema = new Schema(
         userId: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-            required: true,
-            unique: true
+            required: true
         },
         businessId: {
             type: Schema.Types.ObjectId,
             ref: 'Business',
-            required: true,
-            unique: true
+            required: true
+        }
+    },
+    {
+        toJSON: {
+            getters: true
         }
     }
 );

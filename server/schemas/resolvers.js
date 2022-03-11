@@ -9,7 +9,9 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('thoughts')
-          .populate('friends');
+          .populate('friends')
+          .populate('businesses')
+          .populate('votes')
 
         return userData;
       }
@@ -20,14 +22,16 @@ const resolvers = {
       return User.find()
         .select('-__v -password')
         .populate('thoughts')
-        .populate('friends');
+        .populate('friends')
+        .populate('votes');
     },
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
         .populate('thoughts')
-        .populate('votes');
+        .populate('votes')
+        .populate('businesses');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -38,15 +42,19 @@ const resolvers = {
     },
     allBusiness: async() => {
       return Business.find()
-        .select('-__v -password')
+        .select('-__v')
         .populate('thoughts')
         .populate('votes');
     },
-    business: async(parent, { title }) => {
-      return Business.findOne({ title })
-        .select('-__v -password')
+    business: async(parent, { _id }) => {
+      return Business.findOne({ _id })
+        .select('-__v')
         .populate('thoughts')
         .populate('votes');
+    },
+    vote: async(parent, { _id }) => {
+      return Vote.findOne({ _id })
+        .select('-__v')
     }
   },
 
@@ -75,10 +83,16 @@ const resolvers = {
     },
     addThought: async (parent, args, context) => {
       if (context.user) {
-        const thought = await Thought.create({ ...args, username: context.user.username });
+        const thought = await Thought.create({ ...args, username: context.user.username, userId: context.user._id });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
+          { $push: { thoughts: thought._id } },
+          { new: true }
+        );
+
+        await Business.findByIdAndUpdate(
+          { _id: thought.businessId },
           { $push: { thoughts: thought._id } },
           { new: true }
         );
@@ -113,8 +127,58 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+    addBusiness: async(parent, { business }, context) => {
+      if(context.user) {
+        const newBusiness = await Business.create({...business, userId: context.user._id });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { businesses: newBusiness._id } },
+          { new: true, runValidators: true }
+        ).populate('businesses');
+
+        return newBusiness;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addVote: async(parent, args, context) => {
+      if(context.user){
+        const vote = await Vote.create({...args, userId: context.user._id});
+
+        await Business.findByIdAndUpdate(
+          { _id: vote.businessId },
+          { $push: { votes: vote._id } },
+          { new: true}
+        ).populate('votes');
+        
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { votes: vote._id } },
+          { new: true }
+        ).populate('votes');
+
+        return vote;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateVote: async(parent, { voteType, _id }, context) => {
+      if(context.user){
+        const updatedVote = await Vote.findOneAndUpdate(
+          { _id: _id },
+          { voteType: voteType },
+          { new: true }
+        );
+
+        return updatedVote;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     }
   }
 };
 
 module.exports = resolvers;
+

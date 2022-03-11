@@ -21,7 +21,7 @@ const thoughtSchema = new Schema(
     },
     userId:{
       type: Schema.Types.ObjectId,
-        ref: 'User'
+      ref: 'User'
     },
     businessId: {
       type: Schema.Types.ObjectId,

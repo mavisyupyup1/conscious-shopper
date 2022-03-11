@@ -7,7 +7,7 @@ const typeDefs = gql`
     email: String
     friendCount: Int
     accountType: String
-    business: [Business]
+    businesses: [Business]
     thoughts: [Thought]
     friends: [User]
     votes: [Vote]
@@ -21,10 +21,12 @@ const typeDefs = gql`
     links: [String]
     phone: String
     description: String
+    userId: ID
     image: [String]
     blackOwned: Boolean
     womenOwned: Boolean
     thoughts: [Thought]
+    voteCount: Int
     votes: [Vote]
   }
 
@@ -65,7 +67,8 @@ const typeDefs = gql`
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
     allBusiness: [Business] 
-    business(title: String!): Business
+    business(_id: ID!): Business
+    vote(_id: ID!): Vote
   }
 
   input userCreate {
@@ -78,9 +81,23 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userCreate: userCreate!): Auth
-    addThought(thoughtText: String!): Thought
+    addThought(thoughtText: String!, businessId: ID): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
+    addBusiness(business: businessCreate!): Business
+    addVote(voteType: String!, businessId: ID!): Vote
+    updateVote(voteType: String!, _id: ID!): Vote
+  }
+
+  input businessCreate {
+    title: String!
+    location: String!
+    links: [String]
+    phone: String!
+    description: String!
+    image: [String]
+    blackOwned: Boolean
+    womenOwned: Boolean
   }
 `;
 

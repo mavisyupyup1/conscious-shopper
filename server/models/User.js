@@ -32,7 +32,7 @@ const userSchema = new Schema(
         ref: 'Thought'
       }
     ],
-    business:[
+    businesses:[
       {
         type: Schema.Types.ObjectId,
         ref: 'Business'
