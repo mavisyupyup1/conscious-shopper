@@ -8,7 +8,6 @@ import {
 } from "@stripe/react-stripe-js";
 
 import useResponsiveFontSize from "../../utils/useResponsiveFontSize";
-import axios from "axios"
 
 const useOptions = () => {
   const fontSize = useResponsiveFontSize();
@@ -56,7 +55,7 @@ const SplitForm = () => {
     });
    if(!error) try{
      const {id}=paymentMethod
-    const response = await axios.post("/payment", {
+    const response = await ("/payment", {
      amount:199,
      id})
 

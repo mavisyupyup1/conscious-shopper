@@ -33,8 +33,14 @@ const userSchema = new Schema(
         ref: 'User'
       }
     ],
-    order:[Order.schema
-    ]
+    stripeId:{
+      type:String
+    },
+    type:{
+      type: String,
+      required: true
+    },
+
   },
   {
     toJSON: {

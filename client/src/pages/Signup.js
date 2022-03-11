@@ -15,7 +15,7 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
-    account:'free'
+    type:'free'
   });
  const[paidUserSignedUp,setPaidUserSignedUp]=useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
@@ -38,10 +38,10 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-if(formState.account=== "free"){
+if(formState.type=== "free"){
   Auth.login(data.addUser.token);
 }
-else if(formState.account=== "paid"){
+else if(formState.type=== "paid"){
   console.log("paid account")
   setPaidUserSignedUp(true)
 
@@ -90,8 +90,8 @@ else {
                 value={formState.password}
                 onChange={handleChange}
               />
-             <label htmlFor="account">Choose An Account Type:</label>
-<select className="form-input" name="account" id="account" onChange={handleChange}>
+             <label htmlFor="type">Choose An Account Type:</label>
+<select className="form-input" name="type" id="type" onChange={handleChange}>
   <option value="free">Customer Account (Free)</option>
   <option value="paid">Business Account ($1.99/months)</option>
 </select>
@@ -103,7 +103,7 @@ else {
 </>
 } */}
 <button className="btn d-block w-100" type="submit">
-{formState.account=== "paid" ?(<span>Pay and Submit</span>):(<span>Submit</span>)}
+{formState.type=== "paid" ?(<span>Pay and Submit</span>):(<span>Submit</span>)}
 {/* Submit */}
 </button>
 </form>          
