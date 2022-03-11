@@ -10,7 +10,7 @@ var Top5Card = function ({ data, setOrdered }) {
       <Col>
 
         <Card className="h-100 shadow-sm bg-white rounded mt-2">
-        {/* <Card.Img variant="top" src={data.image} /> */}
+        <Card.Img variant="top" src={data.image} />
         <Card.Body className="d-flex flex-column">
             <div className="d-flex mb-2 justify-content-between">
             <Card.Title className="mb-0 font-weight-bold">{data.name}</Card.Title>

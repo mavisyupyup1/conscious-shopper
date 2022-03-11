@@ -9,12 +9,14 @@ const HeroMain = () => {
     return (
         <>
 
-        <Carousel>
-            <Carousel.Item interval={9000}>
+        <Carousel style={{ height: "80%" }}>
+            <Carousel.Item interval={9000} >
                 <img
-                className="d-block w-100"
+                className="d-block"
                 src={shopimage}
                 alt="First slide"
+                
+                
                 />
                 <Carousel.Caption>
                 <FloatingLabel style={{ color: "green" }} controlId="floatingInput" label="Search a CITY to shop concious!" className="mb-3">
