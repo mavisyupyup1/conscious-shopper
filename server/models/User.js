@@ -21,10 +21,22 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+    accountType: {
+      type: String,
+      required: true,
+      enum: ['business', 'personal'],
+      default: 'personal'
+    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Thought'
+      }
+    ],
+    businesses:[
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Business'
       }
     ],
     friends: [
@@ -41,6 +53,12 @@ const userSchema = new Schema(
       required: true
     },
 
+    votes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Vote'
+      }
+    ]
   },
   {
     toJSON: {

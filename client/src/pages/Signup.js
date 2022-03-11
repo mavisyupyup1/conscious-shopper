@@ -10,6 +10,7 @@ import {Redirect} from "react-router-dom"
 const stripePromise = loadStripe("pk_test_51KaouJLvQuwH79AnN7yEfoHv5B2ecn6fLOIgKx1siq59pTuioxmpCYDGsAMZtGWZ6eI63rSU9ckt9DZCPVjYNVnZ00iGHVuw44");
 
 
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',

@@ -19,11 +19,20 @@ const thoughtSchema = new Schema(
       type: String,
       required: true
     },
+    userId:{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    businessId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Business'
+    },
     reactions: [reactionSchema]
   },
   {
     toJSON: {
-      getters: true
+      getters: true,
+      virtuals: true
     }
   }
 );
