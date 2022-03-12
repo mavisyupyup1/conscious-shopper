@@ -91,11 +91,13 @@ const resolvers = {
           { new: true }
         );
 
-        await Business.findByIdAndUpdate(
-          { _id: thought.businessId },
-          { $push: { thoughts: thought._id } },
-          { new: true }
-        );
+        if(thought.businessId){
+          await Business.findByIdAndUpdate(
+            { _id: thought.businessId },
+            { $push: { thoughts: thought._id } },
+            { new: true }
+          );
+        }
 
         return thought;
       }

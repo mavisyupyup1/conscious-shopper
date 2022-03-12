@@ -6,6 +6,8 @@ export const QUERY_THOUGHTS = gql`
       _id
       thoughtText
       createdAt
+      userId
+      businessId
       username
       reactionCount
       reactions {
@@ -24,6 +26,8 @@ export const QUERY_THOUGHT = gql`
       _id
       thoughtText
       createdAt
+      userId
+      businessId
       username
       reactionCount
       reactions {
@@ -43,6 +47,43 @@ export const QUERY_USER = gql`
       username
       email
       friendCount
+      accountType
+      businesses {
+        _id
+        title
+        createdAt
+        location
+        links
+        phone
+        description
+        userId
+        image
+        blackOwned
+        womenOwned
+        closing
+        momAndDad
+        thoughts {
+          _id
+          thoughtText
+          createdAt
+          userId
+          businessId
+          reactionCount
+          reactions {
+            _id
+            createdAt
+            reactionBody
+            username
+          }
+        }
+        voteCount
+        votes {
+          _id
+          voteType
+          userId
+          businessId
+        }
+      }
       friends {
         _id
         username
@@ -52,6 +93,18 @@ export const QUERY_USER = gql`
         thoughtText
         createdAt
         reactionCount
+        reactions {
+          _id
+          createdAt
+          reactionBody
+          username
+        }
+      }
+      votes {
+        _id
+        voteType
+        userId
+        businessId
       }
     }
   }
@@ -63,6 +116,77 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      friendCount
+      accountType
+      businesses {
+        _id
+        title
+        createdAt
+        location
+        links
+        phone
+        description
+        userId
+        image
+        blackOwned
+        womenOwned
+        closing
+        momAndDad
+        thoughts {
+          _id
+          thoughtText
+          createdAt
+          userId
+          businessId
+          reactionCount
+          reactions {
+            _id
+            createdAt
+            reactionBody
+            username
+          }
+        }
+        voteCount
+        votes {
+          _id
+          voteType
+          userId
+          businessId
+        }
+      }
+      friends {
+        _id
+        username
+      }
+      thoughts {
+        _id
+        thoughtText
+        createdAt
+        reactionCount
+        reactions {
+          _id
+          createdAt
+          reactionBody
+          username
+        }
+      }
+      votes {
+        _id
+        voteType
+        userId
+        businessId
+      }
+    }
+  }
+`;
+
+export const QUERY_ME_BASIC = gql`
+  {
+    me {
+      _id
+      username
+      email
+      accountType
       friendCount
       thoughts {
         _id
@@ -80,21 +204,62 @@ export const QUERY_ME = gql`
         _id
         username
       }
+      votes {
+        _id
+        voteType
+        userId
+        businessId
+      }
     }
   }
 `;
-//commit
-export const QUERY_ME_BASIC = gql`
-  {
-    me {
+
+export const QUERY_BUSINESS = gql`
+  query business($id: ID!){
+    business(_id: $id) {
       _id
-      username
-      email
-      friendCount
-      friends {
+      title
+      createdAt
+      location
+      links
+      phone
+      description
+      userId
+      image
+      blackOwned
+      womenOwned
+      closing
+      momAndDad
+      thoughts {
         _id
-        username
+        thoughtText
+        createdAt
+        reactionCount
+        reactions {
+          _id
+          createdAt
+          reactionBody
+          username
+        }
       }
+      voteCount
+      votes {
+        _id
+        voteType
+        userId
+        businessId
+      }
+    }
+  }
+`;
+
+export const QUERY_VOTE = gql`
+  query vote($id: ID!){
+    vote(_id: $id){
+      _id
+      voteType
+      userId
+      businessId
     }
   }
 `;
