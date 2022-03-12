@@ -29,7 +29,13 @@ const Profile = (props) => {
   }
 
   // redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if(Auth.loggedIn()&& user.type==='PAID'&& !user.stripeId ){
+    console.log('Am i being triggered?')
+    return <Redirect to="/profile/pay"/>
+    
+  }
+  else if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    console.log("is this getting triggered?")
     return <Redirect to="/profile" />;
   }
 

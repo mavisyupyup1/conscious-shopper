@@ -44,7 +44,8 @@ const userSchema = new Schema(
     },
     type:{
       type: String,
-    
+      enum: ['PAID', 'FREE'],
+      default: 'FREE'
     },
 
   },

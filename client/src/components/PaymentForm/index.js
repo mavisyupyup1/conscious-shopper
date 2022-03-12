@@ -50,7 +50,7 @@ const SplitForm = () => {
 
     const result = await stripe.confirmPayment({
       //`Elements` instance that was used to create the Payment Element
-  
+  CardCvcElement,CardExpiryElement,CardNumberElement,
       confirmParams: {
         return_url: "https://example.com/order/123/complete",
       },

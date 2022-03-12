@@ -6,6 +6,7 @@ import FriendList from '../components/FriendList';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
+import { Redirect } from 'react-router-dom';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
@@ -13,10 +14,17 @@ const Home = () => {
   const thoughts = data?.thoughts || [];
 
   const loggedIn = Auth.loggedIn();
+  const paidUser = userData?.me.type === "PAID"
+  const hasStripeId = Boolean(userData?.me.hasStripeId)
 
+  console.log("StripeId:", userData?.me.stripeId)
+  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
   return (
     <main>
       <div className="flex-row justify-space-between">
+        {loggedIn && paidUser && !hasStripeId ? (
+          <Redirect to='/signup/pay' />
+        ) : null}
         {loggedIn && (
           <div className="col-12 mb-3">
             <ThoughtForm />

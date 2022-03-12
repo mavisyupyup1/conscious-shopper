@@ -1,19 +1,18 @@
-           import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import {Redirect} from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
     email: '',
     password: '',
-    type:'free'
+    type: 'FREE'
   });
- const[paidUserSignedUp,setPaidUserSignedUp]=useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
-
+  
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -32,18 +31,8 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-if(formState.type=== "free"){
-  Auth.login(data.addUser.token);
-}
-else if(formState.type=== "paid"){
-  console.log("paid account")
-  setPaidUserSignedUp(true)
-
-} 
-else {
-  throw new Error("Content State Unknown User Choice")
-}
-     
+  
+        Auth.login(data.addUser.token);
 
     } catch (e) {
       console.error(e);
@@ -84,30 +73,22 @@ else {
                 value={formState.password}
                 onChange={handleChange}
               />
-             <label htmlFor="type">Choose An Account Type:</label>
-<select className="form-input" name="type" id="type" onChange={handleChange}>
-  <option value="free">Customer Account (Free)</option>
-  <option value="paid">Business Account ($1.99/months)</option>
-</select>
-{/* {formState.account=== "paid"  &&
-  <>
-   <Elements stripe={stripePromise}>
-<PaymentForm/>
-</Elements>
-</>
-} */}
-<button className="btn d-block w-100" type="submit">
-{formState.type=== "paid" ?(<span>Pay and Submit</span>):(<span>Submit</span>)}
-{/* Submit */}
-</button>
-</form>          
+              <label htmlFor="type">Choose An Account Type:</label>
+              <select className="form-input" name="type" id="type" onChange={handleChange}>
+                <option value="FREE">Customer Account (Free)</option>
+                <option value="PAID">Business Account ($1.99/months)</option>
+              </select>
+              <button className="btn d-block w-100" type="submit">
+                submit
+              </button>
+            </form>
             {error && <div>Signup failed</div>}
           </div>
         </div>
       </div>
-      {
+      {/* {
         paidUserSignedUp && <Redirect to='/signup/pay'/>
-      }
+      } */}
     </main>
   );
 };
