@@ -67,10 +67,6 @@ export const ADD_FRIEND = gql`
         _id
         username
       }
-      votes {
-        _id
-        voteType
-      }
     }
   }
 `;
@@ -84,10 +80,6 @@ export const REMOVE_FRIEND = gql`
       friends {
         _id
         username
-      }
-      votes {
-        _id
-        voteType
       }
     }
   }
