@@ -13,8 +13,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($userCreate: userCreate!) {
+    addUser(userCreate: $userCreate) {
       token
       user {
         _id
@@ -25,12 +25,14 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+  mutation addThought($thoughtText: String!, $businessId: ID) {
+    addThought(thoughtText: $thoughtText businessId: $businessId) {
       _id
       thoughtText
       createdAt
       username
+      userId
+      businessId
       reactionCount
       reactions {
         _id
@@ -59,6 +61,7 @@ export const ADD_FRIEND = gql`
     addFriend(friendId: $id) {
       _id
       username
+      accountType
       friendCount
       friends {
         _id
@@ -73,10 +76,51 @@ export const REMOVE_FRIEND = gql`
     removeFriend(id: $id) {
       _id
       username
+      accountType
       friends {
         _id
         username
       }
+    }
+  }
+`;
+
+export const CREATE_BUSINESS = gql`
+  mutation addBusiness($business: businessCreate!){
+    addBusiness(business: $business){
+      _id
+      title
+      createdAt
+      location
+      links
+      phone 
+      description
+      userId
+      image
+      blackOwned
+      womenOwned
+      closing
+      momAndDad
+    }
+  }
+`;
+
+export const NEW_VOTE = gql`
+  mutation addVote($voteType: String!, $businessId: ID!){
+    addVote(voteType: $voteType, businessId: $businessId){
+      _id
+      voteType
+      userId
+      businessId
+    }
+  }
+`;
+
+export const UPDATE_VOTE = gql`
+  mutation updateVote($voteType: String!, $id: ID!){
+    updateVote(voteType: $voteType, _id: $id){
+      _id
+      voteType
     }
   }
 `;

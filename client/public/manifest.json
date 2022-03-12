@@ -1,0 +1,29 @@
+{
+  "icons": [
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+   
+    {
+      "src": "logo256.png",
+      "sizes": "256X256",
+      "type": "image/png"
+    },
+
+    {
+      "src": "logo64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "name": "Conscious Shopper",
+  "short_name": "Conscious",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "index.html",
+  "description": "An app for conscious shoppers to discover and support local stores.",
+  "background_color": "#01579b",
+  "theme_color": "#ffffff"
+}

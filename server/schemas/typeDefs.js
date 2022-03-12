@@ -25,6 +25,8 @@ const typeDefs = gql`
     image: [String]
     blackOwned: Boolean
     womenOwned: Boolean
+    closing: Boolean
+    momAndDad: Boolean
     thoughts: [Thought]
     voteCount: Int
     votes: [Vote]

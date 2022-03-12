@@ -48,6 +48,14 @@ const businessSchema = new Schema(
         type: Boolean,
         required: true
       },
+    closing: {
+      type: Boolean,
+      required: true
+    },
+    momAndDad: {
+      type: Boolean,
+      required: true
+    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,
