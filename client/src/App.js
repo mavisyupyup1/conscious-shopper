@@ -57,8 +57,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className=" ">
-          <NavbarMain></NavbarMain>
+        <div className="">
+          <NavbarMain />
           <div className="">
             <Switch>
               <Route exact path="/" component={HomeMain} />

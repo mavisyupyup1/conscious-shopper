@@ -28,7 +28,7 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      Auth.login(data.login.token);  
     } catch (e) {
       console.error(e);
     }
@@ -65,7 +65,7 @@ const Login = (props) => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className="btn d-block w-100" type="submit">
+              <button className="btn block w-100" type="submit">
                 Submit
               </button>
             </form>

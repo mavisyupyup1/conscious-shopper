@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-const logout =event=>{
+
+const logout = event=>{
   event.preventDefault();
   Auth.logout()
 }
 
 // Import from React Bootstrap 
-
-
-
 
 const Header = () => {
   return (

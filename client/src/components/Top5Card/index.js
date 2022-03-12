@@ -41,10 +41,13 @@ var Top5Card = function ({ data, setOrdered }) {
                     </div>
                     <Card.Text className="text-secondary">{data.desc}</Card.Text>
                     <Button
-                    onClick=""
+                    onClick={(e) =>{
+                      e.preventDefault()
+
+                      console.log('something inocuos')
+                    }}
                     className="mt-auto font-weight-bold"
                     variant="success"
-                    block
                     >
                     More Info  🔍 
                     </Button>
