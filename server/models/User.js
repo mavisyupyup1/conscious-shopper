@@ -38,7 +38,7 @@ const userSchema = new Schema(
     },
     type:{
       type: String,
-      required: true
+    
     },
 
   },

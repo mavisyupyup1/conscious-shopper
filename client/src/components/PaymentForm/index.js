@@ -42,33 +42,30 @@ const SplitForm = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
-    const [error,paymentMethod] = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardNumberElement)
+    const result = await stripe.confirmPayment({
+      //`Elements` instance that was used to create the Payment Element
+  
+      confirmParams: {
+        return_url: "https://example.com/order/123/complete",
+      },
     });
-   if(!error) try{
-     const {id}=paymentMethod
-    const response = await ("/payment", {
-     amount:199,
-     id})
 
-     if(response.data.success){
-       console.log("Successful payment")
-       setSuccess(true)
-     }
-    } catch(error){
-      console.log("Error", error)
-   } else {
-     console.log(error.message)
-   }
+    if (result.error) {
+      // Show error to your customer (for example, payment details incomplete)
+      console.log(result.error.message);
+    } else {
+      // Your customer will be redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer will be redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+    }
   };
+
 
   return (
     <>
@@ -137,7 +134,7 @@ Pay
       <h2> You have successfully signed up as a business owner. 
       You will be redirected to profile page in 3 seconds. </h2>
     </div>)
-};
+}
 
 
 </>)

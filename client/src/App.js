@@ -20,6 +20,7 @@ import Signup from './pages/Signup';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from "./components/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
+
 const stripePromise = loadStripe("pk_test_51KaouJLvQuwH79AnN7yEfoHv5B2ecn6fLOIgKx1siq59pTuioxmpCYDGsAMZtGWZ6eI63rSU9ckt9DZCPVjYNVnZ00iGHVuw44");
 
 const httpLink = createHttpLink({

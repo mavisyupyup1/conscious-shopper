@@ -34,6 +34,22 @@ const resolvers = {
     },
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
+    },
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+        const price = await stripe.prices.create({
+          unit_amount: 199,
+          currency: 'usd',
+        });
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        price,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
+      return { session: session.id };
     }
   },
 

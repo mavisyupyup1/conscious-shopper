@@ -12,6 +12,7 @@ const typeDefs = gql`
    type:String
   }
 
+
   type Order {
     _id:ID
     purchaseDate: String
@@ -37,6 +38,9 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+  type Checkout {
+    session: ID
+  }
 
   type Query {
     me: User
@@ -46,11 +50,7 @@ const typeDefs = gql`
     thought(_id: ID!): Thought
     stripeId: String
     type: String
-   
-  }
-  
-  type Checkout {
-    session: ID
+    checkout: Checkout
   }
 
   type Mutation {
@@ -60,6 +60,7 @@ const typeDefs = gql`
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
     createSubscription(source:String!):User
+    checkout(products: [ID]!): Checkout
   }
 `;
 

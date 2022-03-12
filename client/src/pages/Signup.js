@@ -2,13 +2,7 @@
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import PaymentForm from "../components/PaymentForm";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 import {Redirect} from "react-router-dom"
-
-const stripePromise = loadStripe("pk_test_51KaouJLvQuwH79AnN7yEfoHv5B2ecn6fLOIgKx1siq59pTuioxmpCYDGsAMZtGWZ6eI63rSU9ckt9DZCPVjYNVnZ00iGHVuw44");
-
 
 const Signup = () => {
   const [formState, setFormState] = useState({
