@@ -62,8 +62,7 @@ enum Type{
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
-    createSubscription(stripeId:String!):User
-    
+    addStripe(stripeId:String!):User
   }
 `;
 

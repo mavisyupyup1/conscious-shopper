@@ -76,7 +76,7 @@ const Signup = () => {
               <label htmlFor="type">Choose An Account Type:</label>
               <select className="form-input" name="type" id="type" onChange={handleChange}>
                 <option value="FREE">Customer Account (Free)</option>
-                <option value="PAID">Business Account ($1.99/months)</option>
+                <option value="PAID">Business Account ($1.99)</option>
               </select>
               <button className="btn d-block w-100" type="submit">
                 submit

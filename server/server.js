@@ -9,6 +9,7 @@ const { authMiddleware } = require('./utils/auth');
 const path= require('path')
 const PORT = process.env.PORT || 3001;
 const app = express();
+const stripe =require('stripe')(process.env.STRIPE_KEY)
 
 const startServer =async()=>{
   //create a new Apollo server and pass in our schema data

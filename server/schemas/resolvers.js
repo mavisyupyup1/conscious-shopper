@@ -60,34 +60,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    createSubscription: async(parent,{source},context)=>{
-      if(!context.user){
-        throw new Error("Not authenticated")
+    addStripe: async(parent,args,context)=>{
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { stripeId:token.token.id},
+          { new: true }
+        );
+        return updatedUser;
       }
-      const user = await User.findOne(context.User._id)
-
-      if (!user) {
-        throw new Error();
-      }
-      let stripeId = user.stripeId;
-      
-        await stripe.subscriptions.create({
-          customer: stripeId,
-          items: [
-            {
-              plan: process.env.PLAN
-            }
-          ]
-        }); 
-
-      user.stripeId = stripeId;
-      await user.save();
-      return user;
+      throw new AuthenticationError('You need to be logged in!');
     },
     addThought: async (parent, args, context) => {
       if (context.user) {
         const thought = await Thought.create({ ...args, username: context.user.username });
-
         await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { thoughts: thought._id } },
