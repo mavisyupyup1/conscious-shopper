@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -34,6 +34,22 @@ const resolvers = {
     },
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
+    },
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+        const price = await stripe.prices.create({
+          unit_amount: 199,
+          currency: 'usd',
+        });
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        price,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
+      return { session: session.id };
     }
   },
 
@@ -59,6 +75,31 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    createSubscription: async(parent,{source},context)=>{
+      if(!context.user){
+        throw new Error("Not authenticated")
+      }
+      const user = await User.findOne(context.User._id)
+
+      if (!user) {
+        throw new Error();
+      }
+      let stripeId = user.stripeId;
+      
+        await stripe.subscriptions.create({
+          customer: stripeId,
+          items: [
+            {
+              plan: process.env.PLAN
+            }
+          ]
+        }); 
+
+      user.stripeId = stripeId;
+      user.type = "paid";
+      await user.save();
+      return user;
     },
     addThought: async (parent, args, context) => {
       if (context.user) {

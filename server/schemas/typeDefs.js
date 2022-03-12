@@ -8,6 +8,14 @@ const typeDefs = gql`
     friendCount: Int
     thoughts: [Thought]
     friends: [User]
+   stripId:String
+   type:String
+  }
+
+
+  type Order {
+    _id:ID
+    purchaseDate: String
   }
 
   type Thought {
@@ -30,6 +38,9 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+  type Checkout {
+    session: ID
+  }
 
   type Query {
     me: User
@@ -37,6 +48,9 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
+    stripeId: String
+    type: String
+    checkout: Checkout
   }
 
   type Mutation {
@@ -45,6 +59,8 @@ const typeDefs = gql`
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
+    createSubscription(source:String!):User
+    checkout(products: [ID]!): Checkout
   }
 `;
 
