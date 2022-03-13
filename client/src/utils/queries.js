@@ -44,6 +44,7 @@ export const QUERY_USER = gql`
       email
       friendCount
       type
+      stripeId
       friends {
         _id
         username
@@ -66,6 +67,7 @@ export const QUERY_ME = gql`
       email
       friendCount
       type
+      stripeId
       thoughts {
         _id
         thoughtText
