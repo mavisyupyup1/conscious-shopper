@@ -59,8 +59,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { userCreate }) => {
-      const user = await User.create(userCreate);
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
@@ -177,6 +177,17 @@ const resolvers = {
         return updatedVote;
       }
 
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addStripe: async(parent,args,context)=>{
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { stripeId:token.token.id},
+          { new: true }
+        );
+        return updatedUser;
+      }
       throw new AuthenticationError('You need to be logged in!');
     }
   }
