@@ -1,12 +1,19 @@
 import React from 'react';
-
 import { Container, Row, Col } from 'react-bootstrap';
+import SearchBCard from '../components/SearchBCard';
 
-import SearchBCard from '../components/SearchBCard'
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_BUSINESS } from '../utils/queries';
 
-import businesses from '../businessData.json'
+//import staticBusinesses from '../businessData.json'
 
-const MainSearch = (data) => {
+const MainSearch = () => {
+  const { loading, data: businessData } = useQuery(QUERY_ALL_BUSINESS);
+  console.log(businessData)
+
+  if(loading) {
+    return <h2>LOADING...</h2>
+  };
 
 return (
     
@@ -15,9 +22,8 @@ return (
         <Row>
             <Col xs={8}>
 
-        
-        {businesses.slice(0, 5).map(data => (
-          <Row  className="m-1" key={`${data.id}`}>
+        {businessData.allBusiness.map(data => (
+          <Row  className="m-1" key={`${data._id}`}>
             <SearchBCard data={data} setOrdered={true} />
           </Row>
         ))}  
