@@ -14,7 +14,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!,$type: Type) {
+  mutation addUser($username: String!, $email: String!, $password: String!,$type: String) {
     addUser(username: $username, email: $email, password: $password, type: $type) {
       token
       user {
@@ -26,15 +26,13 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_STRIPE = gql`
+export const ADD_STRIPE =gql`
 mutation addStripe($stripeId:String!){
   addStripe(stripeId:$stripeId){
-    user  {
-      stripeId
-    }
+stripeId
   }
 }
-`
+`;
 
 export const ADD_THOUGHT = gql`
   mutation addThought($thoughtText: String!, $businessId: ID) {

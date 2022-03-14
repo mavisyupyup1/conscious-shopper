@@ -1,11 +1,11 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-
+import MyBusinessForm from '../components/MyBusinessForm';
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
 import ThoughtForm from '../components/ThoughtForm';
 import { useQuery , useMutation} from '@apollo/client';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_USER, QUERY_ME ,QUERY_ME_BASIC} from '../utils/queries';
 import { ADD_FRIEND } from '../utils/mutations';
 import Auth from '../utils/auth';
 
@@ -15,6 +15,12 @@ const Profile = (props) => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
+  const { data: userData } = useQuery(QUERY_ME_BASIC);
+  const loggedIn = Auth.loggedIn();
+  const paidUser = userData?.me.type === "PAID"
+  const hasNoStripeId = userData?.me.hasStripeId === null
+  console.log("stripeId:", userData?.me.stripeId)
+  console.log("Current user:", {loggedIn, paidUser, hasNoStripeId})
 
   const user = data?.me || data?.user || {};
 
@@ -59,7 +65,11 @@ const Profile = (props) => {
         Add Friend 
       </button>
       )}
-    
+ <div className="flex-row justify-space-between mb-3">
+        <div className="col-12 mb-3 col-lg-8">
+          <MyBusinessForm/>
+        </div>
+    </div>
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">

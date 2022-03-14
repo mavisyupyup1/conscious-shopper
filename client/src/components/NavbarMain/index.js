@@ -1,23 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth'
+import { useQuery } from '@apollo/client';
 
+import { QUERY_BUSINESS,QUERY_ME_BASIC } from '../../utils/queries'
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
-
 const logout = event => {
     event.preventDefault();
     Auth.logout();
 }
 
-
 const NavbarMain = () => {
-
-    return (
+       return (
         
         <Navbar bg="light" expand="lg">
             <Container>
                 <Navbar.Brand href="/">
-                <h1>Concious Shopper</h1>
+                <h1>Conscious Shopper</h1>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
@@ -26,6 +25,10 @@ const NavbarMain = () => {
                         <>
                         <Nav.Link href="/search">MainSearch</Nav.Link>
                         <Nav.Link href="/bpage">Business Page</Nav.Link>
+                      
+                            <>
+                        <Nav.Link href="/profile">My Business</Nav.Link>    
+                            </>
                         <a className="btn btn-block btn-outline-danger" href ='/' onClick={logout}>
                         Logout
                         </a>

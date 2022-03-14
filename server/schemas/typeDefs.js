@@ -11,12 +11,9 @@ const typeDefs = gql`
     friends: [User]
     votes: [Vote]
     stripeId:String
-    type:Type
+    type:String
   }
-  enum Type{
-    PAID
-    FREE
-  }
+ 
   type Business {
     _id: ID
     title: String
@@ -83,7 +80,7 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!, type: Type!): Auth
+    addUser(username: String!, email: String!, password: String!, type: String): Auth
     addThought(thoughtText: String!, businessId: ID): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
