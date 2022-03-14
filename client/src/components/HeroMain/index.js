@@ -28,10 +28,10 @@ console.log("Clicked")
     return (
         <>
 
-        <Carousel style={{ height: "80%" }}>
+        <Carousel >
             <Carousel.Item interval={9000} >
                 <img
-                className="d-block"
+                className="d-block w-100"
                 src={shopimage}
                 alt="First slide"
                 />
@@ -47,7 +47,7 @@ console.log("Clicked")
                 </Carousel.Caption>
             </Carousel.Item>
             
-            </Carousel>
+        </Carousel>
 
 
             
