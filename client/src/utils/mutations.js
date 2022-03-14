@@ -7,22 +7,34 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        type
       }
     }
   }
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($userCreate: userCreate!) {
-    addUser(userCreate: $userCreate) {
+  mutation addUser($username: String!, $email: String!, $password: String!,$type: Type) {
+    addUser(username: $username, email: $email, password: $password, type: $type) {
       token
       user {
         _id
         username
+        type
       }
     }
   }
 `;
+
+export const ADD_STRIPE = gql`
+mutation addStripe($stripeId:String!){
+  addStripe(stripeId:$stripeId){
+    user  {
+      stripeId
+    }
+  }
+}
+`
 
 export const ADD_THOUGHT = gql`
   mutation addThought($thoughtText: String!, $businessId: ID) {
@@ -61,7 +73,7 @@ export const ADD_FRIEND = gql`
     addFriend(friendId: $id) {
       _id
       username
-      accountType
+      type
       friendCount
       friends {
         _id
@@ -76,7 +88,7 @@ export const REMOVE_FRIEND = gql`
     removeFriend(id: $id) {
       _id
       username
-      accountType
+      type
       friends {
         _id
         username

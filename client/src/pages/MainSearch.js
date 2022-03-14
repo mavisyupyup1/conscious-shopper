@@ -20,7 +20,7 @@ return (
     <Container>
 
         <Row>
-            <Col xs={8}>
+            <Col xs={8} className='mb-1 mt-1'>
 
         {businessData.allBusiness.map(data => (
           <Row  className="m-1" key={`${data._id}`}>
@@ -31,7 +31,7 @@ return (
         </Col>
 
 
-        <Col xs={4} className=' border border-dark border-5 rounded'>
+        <Col xs={3} className=' mb-2 mt-2 border border-dark border-5 rounded'>
             <h1>FILTER</h1>
         </Col>
 

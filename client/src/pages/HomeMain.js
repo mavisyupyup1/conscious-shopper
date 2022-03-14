@@ -1,19 +1,16 @@
 import React from 'react';
 
+
 import { Container, Row, Col } from 'react-bootstrap';
 
 import HeroMain from '../components/HeroMain';
 import Top5Card from '../components/Top5Card';
-
-
-
 import businesses from '../businessData.json'
 
 const HomeMain = () => {
 
 return (
-    
-    <Container fluid>
+    <Container>
         <Row>
             <Col>
                 <HeroMain/>

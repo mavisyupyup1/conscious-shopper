@@ -4,12 +4,12 @@ import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
     email: '',
     password: '',
+    type: 'FREE'
   });
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -31,7 +31,6 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -72,11 +71,15 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
+              <label htmlFor="type">Choose An Account Type:</label>
+              <select className="form-input" name="type" id="type" onChange={handleChange}>
+                <option value="FREE">Customer Account (Free)</option>
+                <option value="PAID">Business Account ($1.99)</option>
+              </select>
               <button className="btn d-block w-100" type="submit">
                 Submit
               </button>
             </form>
-
             {error && <div>Signup failed</div>}
           </div>
         </div>
