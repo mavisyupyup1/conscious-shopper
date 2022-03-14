@@ -2,43 +2,50 @@
     {
       "id": 1,
       "name": "NYC SHOP 1",
-      "image": "https://picsum.photos/300/200",
+      "image": "https://picsum.photos/300/220",
       "desc": "Description Description Description Description Description Description Description Description Description ",
-      "type": "Minority"
+      "type": "Minority",
+      "cel": "304-789-3584",
+      "web": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2371.3516303703186!2d-74.0061245246478!3d40.71410503590677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b1eb14a639b%3A0x374d430af6453d28!2sBluestone%20Lane%20Tribeca%20Caf%C3%A9!5e0!3m2!1sen!2sus!4v1647219953392!5m2!1sen!2sus"
     },
     {
       "id": 2,
       "name": "NYC SHOP 2",
-      "image": "https://picsum.photos/300/200",
+      "image": "https://picsum.photos/300/220",
       "desc": "Description Description Description Description Description Description Description Description Description ",
-      "type": "Closing"
+      "type": "Closing",
+      "cel": "304-584-3584"
     },
     {
       "id": 3,
       "name": "NYC SHOP 2",
-      "image": "https://picsum.photos/300/200",
+      "image": "https://picsum.photos/300/220",
       "desc": "Description Description Description Description Description Description Description Description Description ",
-      "type": "New"
+      "type": "New",
+      "cel": "304-784-3584"
     },
     {
       "id": 4,
       "name": "NYC SHOP 1",
-      "image": "https://picsum.photos/300/200",
+      "image": "https://picsum.photos/300/220",
       "desc": "Description Description Description Description Description Description Description Description Description ",
-      "type": "Mom & Dad"
+      "type": "Mom & Dad",
+      "cel": "304-589-2354"
     },
     {
         "id": 5,
         "name": "NYC SHOP 1",
-        "image": "https://picsum.photos/300/200",
+        "image": "https://picsum.photos/300/220",
         "desc": "Description Description Description Description Description Description Description Description Description ",
-        "type": "Mom & Dad"
+        "type": "Mom & Dad",
+        "cel": "895-789-3584"
       },
       {
         "id": 6,
         "name": "NYC SHOP 1",
-        "image": "https://picsum.photos/300/200",
+        "image": "https://picsum.photos/300/220",
         "desc": "Description Description Description Description Description Description Description Description Description ",
-        "type": "Mom & Dad"
+        "type": "Mom & Dad",
+        "cel": "965-789-3584"
       }
   ]
