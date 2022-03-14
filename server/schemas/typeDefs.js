@@ -13,10 +13,12 @@ const typeDefs = gql`
     stripeId:String
     type:Type
   }
+
   enum Type{
     PAID
     FREE
   }
+
   type Business {
     _id: ID
     title: String
@@ -79,8 +81,6 @@ const typeDefs = gql`
     type: String
   }
 
- 
-
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, type: Type!): Auth
@@ -90,7 +90,7 @@ const typeDefs = gql`
     addBusiness(business: businessCreate!): Business
     addVote(voteType: String!, businessId: ID!): Vote
     updateVote(voteType: String!, _id: ID!): Vote
-    addStripe(stripeId:String!):User
+    addStripe(stripeId: String):User
   }
 
   input businessCreate {
