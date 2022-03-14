@@ -13,8 +13,7 @@ import { useMutation } from "@apollo/client";
 const SplitForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [success, setSuccess] = useState(false)
-  
+  const [stripeId, setStripeId] = useState('')
   const [addStripe] = useMutation(ADD_STRIPE)
 
   const handleSubmit = async event => {
@@ -27,13 +26,13 @@ const SplitForm = () => {
     try {
       const card = elements.getElement(CardNumberElement);
       const stripeToken = await stripe.createToken(card);
-      const stripeId = stripeToken.token.id;
-      console.log(stripeId)
+      console.log(stripeToken.token.id)
+      setStripeId(stripeToken)
       try {
-        await addStripe(
-        {variables: {stripeId}},
-        {new:true})
-      }
+        await addStripe({
+          variables: {stripeId},
+        })
+        }
       catch(err){
         console.error(err)
       }
@@ -45,8 +44,8 @@ const SplitForm = () => {
 
   return (
     <>
-      {!success ?
-        (<form onSubmit={handleSubmit}>
+    
+        <form onSubmit={handleSubmit}>
           <label>
             Card number
           </label>   <CardNumberElement />
@@ -60,15 +59,10 @@ const SplitForm = () => {
             Pay
 
           </button>
-        </form>) :
-        (<div>
-          <h2> You have successfully signed up as a business owner.
-            You will be redirected to profile page in 3 seconds. </h2>
-        </div>)
-      }
+        </form>
+    
 
-
-    </>)
-};
-
+    </>
+  );
+  }
 export default SplitForm;

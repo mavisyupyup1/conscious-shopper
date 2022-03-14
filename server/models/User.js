@@ -20,9 +20,11 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    stripeId:{
-      type:String
+    stripeId: {
+      type:String,
+      required:false
     },
+
     type:{
       type: String,
       enum: ['PAID', 'FREE'],
@@ -57,7 +59,7 @@ const userSchema = new Schema(
     toJSON: {
       virtuals: true
     }
-  }
+  },
 );
 
 // set up pre-save middleware to create password

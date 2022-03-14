@@ -15,9 +15,9 @@ const HomeMain = () => {
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const loggedIn = Auth.loggedIn();
   const paidUser = userData?.me.type === "PAID"
-  const hasNoStripeId = userData?.me.hasStripeId === null
+  const hasStripeId = userData?.me.stripeId !== null
   console.log("stripeId:", userData?.me.stripeId)
-  console.log("Current user:", {loggedIn, paidUser, hasNoStripeId})
+  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
 return (
     <Container fluid>
         <Row>

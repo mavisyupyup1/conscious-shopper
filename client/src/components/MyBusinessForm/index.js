@@ -18,28 +18,7 @@ const MyBusinessForm = () => {
     momAndDad: '',
 
   });
-  const [addBusiness, { error }] = useMutation(CREATE_BUSINESS, {
-    update(cache, { data: { addBusiness } }) {
-      try {
-        // update thought array's cache
-        // could potentially not exist yet, so wrap in a try/catch
-        const { businesses } = cache.readQuery({ query: QUERY_BUSINESS });
-        cache.writeQuery({
-          query: QUERY_BUSINESS,
-          data: { businesses: [addBusiness, ...businesses] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-
-      // update me object's cache
-      // const { me } = cache.readQuery({ query: QUERY_ME });
-      // cache.writeQuery({
-      //   query: QUERY_ME,
-      //   data: { me: { ...me, thoughts: [...me.thoughts, addThought] } },
-      // });
-    },
-  });
+  const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -50,10 +29,10 @@ const MyBusinessForm = () => {
       [name]: value,
     });
     const blackOwnedBusiness = document.getElementById('blackOwned').value
-    console.log("Blackowned: ", blackOwnedBusiness)
+    console.log("BlackOwned: ", blackOwnedBusiness)
 
     const womenOwnedBusiness = document.getElementById('womenOwned').value
-    console.log("Womenowned: ", womenOwnedBusiness)
+    console.log("WomenOwned: ", womenOwnedBusiness)
     
     const closingBusiness = document.getElementById('closing').value
     console.log("Closing: ", closingBusiness)
@@ -64,8 +43,8 @@ const MyBusinessForm = () => {
     event.preventDefault();
 
     try {
-      await addBusiness({
-        variables: { ...formState },
+      await createBusiness({
+        variables: {business:{ ...formState }},
       });
 
       // clear form value
@@ -77,7 +56,7 @@ const MyBusinessForm = () => {
   };
 
   return (
-    <div>
+    <div> 
       <h1
         className={`m-0 ${error ? 'text-error' : ''}`}
       >
@@ -87,6 +66,7 @@ const MyBusinessForm = () => {
       <form
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}>
+          <div>
         <label htmlFor="title">Business Name </label>
         <input
           placeholder="e.g. Riverdale Kenshikai Karate"
@@ -97,6 +77,8 @@ const MyBusinessForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         />
+        </div>
+        <div>
         <label htmlFor="location">Address </label>
         <input
           placeholder="e.g. 3607 Fieldston Road, New York, NY"
@@ -107,6 +89,8 @@ const MyBusinessForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         />
+        </div>
+        <div>
         <label htmlFor="website">Website </label>
         <input
           placeholder="e.g. www.riverdalekenshikai.com"
@@ -117,6 +101,8 @@ const MyBusinessForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         />
+        </div>
+        <div>
         <label htmlFor="phone">Phone number </label>
         <input
           placeholder="phone: 718-601-3607"
@@ -127,7 +113,8 @@ const MyBusinessForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         />
-
+</div>
+<div>
         <label htmlFor="blackOwned">Is this a black owned business?</label>
         <div>
         <select className="form-input" name="blackOwned" id="blackOwned" onChange={handleChange} value={formState.blackOwned}>
@@ -135,7 +122,7 @@ const MyBusinessForm = () => {
                 <option value="false">No</option>
               </select>
               </div>
-
+              </div>
               <label htmlFor="blackOwned">Is this a women owned business?</label>
         <div>
         <select className="form-input" name="womenOwned" id="womenOwned" onChange={handleChange} value={formState.womenOwned}>
