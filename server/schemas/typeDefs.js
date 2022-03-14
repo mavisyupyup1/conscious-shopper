@@ -90,7 +90,7 @@ const typeDefs = gql`
     addBusiness(business: businessCreate!): Business
     addVote(voteType: String!, businessId: ID!): Vote
     updateVote(voteType: String!, _id: ID!): Vote
-    addStripe(stripeId:String!):User
+    addStripe(stripeId: String):User
   }
 
   input businessCreate {

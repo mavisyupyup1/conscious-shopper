@@ -152,8 +152,6 @@ export const QUERY_ME = gql`
         votes {
           _id
           voteType
-          userId
-          businessId
         }
       }
       friends {
@@ -175,7 +173,6 @@ export const QUERY_ME = gql`
       votes {
         _id
         voteType
-        userId
         businessId
       }
     }

@@ -68,6 +68,7 @@ function App() {
               <Route exact path="/" component={HomeMain} />
               <Route exact path="/search" component={MainSearch} />
               <Route exact path="/bpage" component={BusinessPage} />
+              <Route exact path="/bpage/:id" component={BusinessPage} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route path="/signup/pay" component={() => {
