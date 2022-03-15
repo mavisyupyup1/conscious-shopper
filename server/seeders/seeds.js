@@ -1,75 +1,81 @@
-const faker = require('faker');
-
 const db = require('../config/connection');
-const { Thought, User } = require('../models');
+const { User, Business, } = require('../models');
 
 db.once('open', async () => {
-  await Thought.deleteMany({});
-  await User.deleteMany({});
+  
 
-  // create user data
-  const userData = [];
+  await Business.deleteMany();
 
-  for (let i = 0; i < 50; i += 1) {
-    const username = faker.internet.userName();
-    const email = faker.internet.email(username);
-    const password = faker.internet.password();
-
-    userData.push({ username, email, password });
-  }
-
-  const createdUsers = await User.collection.insertMany(userData);
-
-  // create friends
-  for (let i = 0; i < 100; i += 1) {
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { _id: userId } = createdUsers.ops[randomUserIndex];
-
-    let friendId = userId;
-
-    while (friendId === userId) {
-      const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-      friendId = createdUsers.ops[randomUserIndex];
+  const businesses = await Business.insertMany([
+    {
+      title: 'Tin of Cookies',
+      description:
+        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+      image: 'cookie-tin.jpg',
+      location:'622 West 168th St, New York,NY',
+      phone:'646-123-1234',
+      blackOwned: true,
+      womenOwned:true,
+      closing:false,
+      momAndDad: false,
+    },
+    {
+      title: 'Car Wash',
+      description:
+        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+      image: 'cookie-tin.jpg',
+      location:'2 West 268th St, Bronx,NY',
+      phone:'646-123-1234',
+      blackOwned: true,
+      womenOwned:false,
+      closing:true,
+      momAndDad: false,
+    },
+    {
+      title: 'Dry Cleaning',
+      description:
+        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+      image: 'cookie-tin.jpg',
+      location:' West 16th St, New York,NY',
+      phone:'646-123-1234',
+      blackOwned: false,
+      womenOwned:true,
+      closing:false,
+      momAndDad: true,
+    },
+    {
+      title: 'Flower Shop',
+      description:
+        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+      image: 'cookie-tin.jpg',
+      location:'622 West 168th St, Brooklyn,NY',
+      phone:'646-123-1234',
+      blackOwned: true,
+      womenOwned:true,
+      closing:false,
+      momAndDad: false,
     }
+  ])
+  console.log('business seeded');
 
-    await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
-  }
+  await User.deleteMany();
 
-  // create thoughts
-  let createdThoughts = [];
-  for (let i = 0; i < 100; i += 1) {
-    const thoughtText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+  const users = await User.insertMany([
+    {
+      "username": "Okey_Schinner",
+      "email": "Okey_Schinner_Bernier@hotmail.com",
+      "password": "gqxFBGXzSoNZdSj",
+      "type":"PAID",
+      "stripeId":"asdsasd"
+    },
+    {
+      "username": "Schinner",
+      "email": "Okey_Bernier@hotmail.com",
+      "password": "gqxFBGXzSoNZdSj",
+      "type":"FREE",
+    }
+  ])
 
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
-
-    const createdThought = await Thought.create({ thoughtText, username });
-
-    const updatedUser = await User.updateOne(
-      { _id: userId },
-      { $push: { thoughts: createdThought._id } }
-    );
-
-    createdThoughts.push(createdThought);
-  }
-
-  // create reactions
-  for (let i = 0; i < 100; i += 1) {
-    const reactionBody = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username } = createdUsers.ops[randomUserIndex];
-
-    const randomThoughtIndex = Math.floor(Math.random() * createdThoughts.length);
-    const { _id: thoughtId } = createdThoughts[randomThoughtIndex];
-
-    await Thought.updateOne(
-      { _id: thoughtId },
-      { $push: { reactions: { reactionBody, username } } },
-      { runValidators: true }
-    );
-  }
-
-  console.log('all done!');
-  process.exit(0);
+  console.log('users seeded');
+  process.exit();
 });
