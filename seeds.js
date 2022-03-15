@@ -160,6 +160,34 @@ db.once('open', async () => {
         closing:false,
         momAndDad: true
       },
+
+      {
+        title: 'Las Lap',
+        description:
+          'Unique cocktails & bar bites such as arepas & oxtail rice bowls served in intimate surrounds.',
+        image: 'las-lap.jpeg',
+        location:'74 Orchard St, New York, NY',
+        links:['laslapnewyork.com'],
+        phone:'646-123-1234',
+        blackOwned: true,
+        womenOwned:false,
+        closing:false,
+        momAndDad: false
+      },
+
+      {
+        title: 'Happy Cork',
+        description:
+          'The Black Owned Brooklyn Shop,Giving Black Wine & Spirit Brands A Home.',
+        image: 'happy-cork.jpeg',
+        location:'51 Buffalo Ave, Brooklyn, NY 11233',
+        links:['www.google.com'],
+        phone:'347-985-9067',
+        blackOwned: true,
+        womenOwned:true,
+        closing:false,
+        momAndDad: false
+      },
   
 
   ])
