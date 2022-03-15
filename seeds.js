@@ -91,6 +91,34 @@ db.once('open', async () => {
         momAndDad: true
       },
 
+      {
+        title: 'Strand Book Store',
+        description:
+          'Landmark shop specializing in new, used & rare books from philosophy to finance, plus bookish gifts.',
+        image: 'strand.jpeg',
+        location:'828 Broadway, New York, NY 10003',
+        links:['www.google.com'],
+        phone:'212-473-1452',
+        blackOwned: false,
+        womenOwned:true,
+        closing:false,
+        momAndDad: true
+      },
+
+      {
+        title: 'Family Food Center',
+        description:
+          'From the street, Family Food Center doesn’t look like much — just a squat brick building that’s a bit worse for wear, with roll-up shutters and windows that show off shelves of toiletries.',
+        image: 'bodega.jpeg',
+        location:'603 Clinton St, Brooklyn, NY 11231',
+        links:['www.google.com'],
+        phone:'347-721-3665',
+        blackOwned: false,
+        womenOwned:false,
+        closing:false,
+        momAndDad: true
+      },
+
   ])
   console.log('business seeded');
 ​
