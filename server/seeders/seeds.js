@@ -18,6 +18,7 @@ db.once('open', async () => {
       womenOwned:true,
       closing:false,
       momAndDad: false,
+      thoughts:[]
     },
     {
       title: 'Car Wash',
