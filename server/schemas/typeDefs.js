@@ -1,6 +1,9 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+scalar Upload
+
   type User {
     _id: ID
     username: String
@@ -24,13 +27,22 @@ const typeDefs = gql`
     description: String
     userId: ID
     image: [String]
-    blackOwned: Boolean
-    womenOwned: Boolean
-    closing: Boolean
-    momAndDad: Boolean
+    blackOwned: String
+    womenOwned: String
+    closing: String
+    momAndDad: String
     thoughts: [Thought]
     voteCount: Int
     votes: [Vote]
+  }
+
+
+
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+
   }
 
   type Thought {
@@ -80,14 +92,16 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!, type: String): Auth
+    addUser(username: String!, email: String!, password: String!, type: String, stripeId:String): Auth
     addThought(thoughtText: String!, businessId: ID): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
     addBusiness(business: businessCreate!): Business
     addVote(voteType: String!, businessId: ID!): Vote
     updateVote(voteType: String!, _id: ID!): Vote
-    addStripe(stripeId:String):User
+    addStripe(stripeId:String):User,
+    uploadFile(file: Upload!): File!
+    
   }
 
   input businessCreate {
@@ -97,10 +111,10 @@ const typeDefs = gql`
     phone: String!
     description: String!
     image: [String]
-    blackOwned: Boolean
-    womenOwned: Boolean
-    closing:Boolean
-    momAndDad:Boolean
+    blackOwned: String
+    womenOwned: String
+    closing:String
+    momAndDad:String
   }
 `;
 

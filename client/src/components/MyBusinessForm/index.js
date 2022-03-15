@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { useMutation } from '@apollo/client';
-import { CREATE_BUSINESS } from '../../utils/mutations';
+import { useMutation ,gql} from '@apollo/client';
+import { CREATE_BUSINESS,UPLOAD_FILE } from '../../utils/mutations';
 import { QUERY_BUSINESS, QUERY_ME } from '../../utils/queries';
 
 const MyBusinessForm = () => {
@@ -12,14 +12,16 @@ const MyBusinessForm = () => {
     phone: '',
     description: '',
     image: '',
-    blackOwned: '',
-    womenOwned: '',
-    closing: '',
-    momAndDad: '',
+    blackOwned: false,
+    womenOwned: false,
+    closing: false,
+    momAndDad: false,
 
   });
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
-
+const[uploadFile]= useMutation(UPLOAD_FILE,{
+  onCompleted: data => console.log(data)
+})
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -54,9 +56,15 @@ const MyBusinessForm = () => {
       console.error(e);
     }
   };
-
+const handleFileChange =e=>{
+  const file =e.target.files[0]
+  if(!file) return
+  uploadFile({variables:{file}})
+}
   return (
     <div> 
+      <h1>Upload File</h1>
+      <input type="file" onChange={handleFileChange}></input>
       <h1
         className={`m-0 ${error ? 'text-error' : ''}`}
       >
@@ -90,13 +98,14 @@ const MyBusinessForm = () => {
           onChange={handleChange}
         />
         </div>
+        
         <div>
-        <label htmlFor="website">Website </label>
+        <label htmlFor="links">Website </label>
         <input
           placeholder="e.g. www.riverdalekenshikai.com"
-          name="website"
-          type="website"
-          id="website"
+          name="links"
+          type="text"
+          id="text"
           value={formState.links}
           className="form-input col-12 col-md-9"
           onChange={handleChange}
@@ -118,32 +127,32 @@ const MyBusinessForm = () => {
         <label htmlFor="blackOwned">Is this a black owned business?</label>
         <div>
         <select className="form-input" name="blackOwned" id="blackOwned" onChange={handleChange} value={formState.blackOwned}>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
               </div>
               </div>
               <label htmlFor="blackOwned">Is this a women owned business?</label>
         <div>
         <select className="form-input" name="womenOwned" id="womenOwned" onChange={handleChange} value={formState.womenOwned}>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
               </div>
 
               <label htmlFor="closing">Is this business on the verge of closing?</label>
         <div>
         <select className="form-input" name="closing" id="closing" onChange={handleChange} value={formState.closing}>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
               </div>
 
               <label htmlFor="momAndDad">Is this a Mom&Dad business?</label>
         <div>
         <select className="form-input" name="momAndDad" id="momAndDad" onChange={handleChange} value={formState.momAndDad}>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+          <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
               </div>
 

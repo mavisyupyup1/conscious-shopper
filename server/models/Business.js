@@ -41,19 +41,19 @@ const businessSchema = new Schema(
       }
     ],
     blackOwned: {
-        type: Boolean,
+        type: String,
         required: true
       },
     womenOwned: {
-        type: Boolean,
+        type: String,
         required: true
       },
     closing: {
-      type: Boolean,
+      type: String,
       required: true
     },
     momAndDad: {
-      type: Boolean,
+      type: String,
       required: true
     },
     thoughts: [

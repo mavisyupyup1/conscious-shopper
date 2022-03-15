@@ -13,7 +13,7 @@ import { useMutation } from "@apollo/client";
 const SplitForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [stripeId, setStripeId] = useState('')
+  
   const [addStripe] = useMutation(ADD_STRIPE)
 
   const handleSubmit = async event => {
@@ -27,11 +27,13 @@ const SplitForm = () => {
       const card = elements.getElement(CardNumberElement);
       const stripeToken = await stripe.createToken(card);
       console.log(stripeToken.token.id)
-      setStripeId(stripeToken)
+     const stripeId = stripeToken.token.id
+    console.log("stripeId =",stripeId)
       try {
         await addStripe({
           variables: {stripeId},
         })
+        return
         }
       catch(err){
         console.error(err)

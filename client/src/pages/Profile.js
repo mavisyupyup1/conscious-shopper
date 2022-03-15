@@ -18,9 +18,9 @@ const Profile = (props) => {
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const loggedIn = Auth.loggedIn();
   const paidUser = userData?.me.type === "PAID"
-  const hasNoStripeId = userData?.me.hasStripeId === null
+  const hasStripeId = userData?.me.stripeId !== null
   console.log("stripeId:", userData?.me.stripeId)
-  console.log("Current user:", {loggedIn, paidUser, hasNoStripeId})
+  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
 
   const user = data?.me || data?.user || {};
 
@@ -33,9 +33,11 @@ const Profile = (props) => {
       console.error(e)
     }
   }
-
+if(loggedIn && paidUser && !hasStripeId) {
+  return <Redirect to="/signup/pay" />;
+}
   // redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if (loggedIn && Auth.getProfile().data.username === userParam && paidUser && hasStripeId) {
     return <Redirect to="/profile" />;
   }
 

@@ -14,19 +14,20 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!,$type: String) {
-    addUser(username: $username, email: $email, password: $password, type: $type) {
-      token
-      user {
-        _id
-        username
-        type
-      }
-    }
+mutation addUser($username: String!, $password: String!, $email: String!, $type: String, $stripeId:String) {
+  addUser(username: $username, password: $password, email: $email, type:$type, stripeId: $stripeId) {
+   token
+   user {
+     _id
+     username
+     type
+     stripeId
+   }
   }
+}
 `;
 
-export const ADD_STRIPE =gql`
+export const ADD_STRIPE = gql`
 mutation addStripe($stripeId:String!){
   addStripe(stripeId:$stripeId){
 stripeId
@@ -134,3 +135,14 @@ export const UPDATE_VOTE = gql`
     }
   }
 `;
+
+export const UPLOAD_FILE = gql`
+mutation uploadFile($file:Upload!){
+  uploadFile(file:$file){
+    filename
+    mimetype
+    encoding
+    
+  }
+}
+`
