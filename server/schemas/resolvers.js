@@ -182,11 +182,11 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    addStripe: async(parent,{stripeId},context)=>{
+    addStripe: async(parent, { stripeId },context)=>{
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { stripeId: stripeId},
+          { stripeId: stripeId },
           { new: true }
         );
         return updatedUser;

@@ -88,8 +88,6 @@ scalar Upload
     type: String
   }
 
- 
-
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, type: String, stripeId:String): Auth
@@ -101,7 +99,7 @@ scalar Upload
     updateVote(voteType: String!, _id: ID!): Vote
     addStripe(stripeId:String):User,
     uploadFile(file: Upload!): File!
-    
+
   }
 
   input businessCreate {
