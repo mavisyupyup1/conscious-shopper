@@ -119,6 +119,49 @@ db.once('open', async () => {
         momAndDad: true
       },
 
+      {
+        title: 'Amy Ruths',
+        description:
+          'Chicken & waffles are among the classics served to locals & sightseers at this down-home restaurant.',
+        image: 'amy-ruth.jpeg',
+        location:'113 W 116th St, New York, NY 10026',
+        links:['www.google.com'],
+        phone:'212-280-8779',
+        blackOwned: true,
+        womenOwned:true,
+        closing:false,
+        momAndDad: false
+      },
+
+      {
+        title: 'Luckys Cocktail Lounge',
+        description:
+          'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+        image: 'luckys.png',
+        location:'334 Marcus Garvey Blvd, Brooklyn, NY 11221',
+        links:['www.google.com'],
+        phone:'347-529-3537',
+        blackOwned: true,
+        womenOwned:true,
+        closing:false,
+        momAndDad: false
+      },
+
+      {
+        title: 'Settepani',
+        description:
+          'Stylish, relaxed Italian neighborhood cafe in Lower Harlem known for its desserts.',
+        image: 'settepani.jpeg',
+        location:'196 Malcolm X Blvd, New York, NY 10026',
+        links:['winendine.com'],
+        phone:'917-492-4806',
+        blackOwned: true,
+        womenOwned:true,
+        closing:false,
+        momAndDad: true
+      },
+  
+
   ])
   console.log('business seeded');
 ​
