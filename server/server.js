@@ -1,6 +1,6 @@
 const express = require('express');
 //import ApolloServer
-const {ApolloServer}=require('apollo-server-express')
+const {ApolloServer,gql}=require('apollo-server-express')
 
 //import our typeDefs and resolvers
 const {typeDefs, resolvers} =require('./schemas')
@@ -9,6 +9,7 @@ const { authMiddleware } = require('./utils/auth');
 const path= require('path')
 const PORT = process.env.PORT || 3001;
 const app = express();
+const { GraphQLUpload,graphqlUploadExpress } = require("graphql-upload");
 
 const startServer =async()=>{
   //create a new Apollo server and pass in our schema data
@@ -32,11 +33,12 @@ const startServer =async()=>{
 startServer();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
+app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }))
 // Serve up static assets
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.join(__dirname,'../client/build')))
 }
+app.use(express.static(path.join(__dirname,'/public/images')))
 
 /*app.get('*', (req,res)=>{
   res.sendFile(path.join(__dirname,'../client/build/index.html'))

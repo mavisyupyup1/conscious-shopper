@@ -22,7 +22,7 @@ const BusinessPage = () => {
     /*if(Auth.loggedIn() && Auth.getProfile().data._id === businessParam){
         return <Redirect to="/bpage" />
     }*/
-
+    console.log(data.business.thoughts)
     return(
         <Container>
         
@@ -47,7 +47,10 @@ const BusinessPage = () => {
                         <Row>
                             <h4>Address:  {data.location}</h4>
                             <h4>Phone Number:  {data.phone}</h4>
-                            <h4>Email</h4>               
+                            <h4>Email</h4>   
+                            <h4>reviews</h4>
+            
+                            {/* <p>{data.thoughts.map(data=>(key={thoughts._id}))}</p>             */}
                         </Row>
                     </Col>
                 </>

@@ -1,7 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought, Business, Vote } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const path = require('path')
+const fs = require('fs')
+const stream = require('stream')
+const { GraphQLUpload,graphqlUploadExpress, } = require("graphql-upload");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -57,7 +60,7 @@ const resolvers = {
         .select('-__v')
     }
   },
-
+  Upload: GraphQLUpload,
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -189,7 +192,23 @@ const resolvers = {
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
+
+    uploadFile: async (parent, { file }) => {
+      const { createReadStream, filename, mimetype, encoding } = await file;
+
+      // Invoking the `createReadStream` will return a Readable Stream.
+      // See https://nodejs.org/api/stream.html#stream_readable_streams
+      // const stream = createReadStream();
+
+      // This is purely for demonstration purposes and will overwrite the
+      // local-file-output.txt in the current working directory on EACH upload.
+      const pathName = path.join(__dirname,`../../client/public/images/${filename}`)
+      await stream.pipe(fs.createWriteStream(pathName));
+    
+      return  { filename, mimetype, encoding };
+      //return { url:`http://localhost:3000/images/${filename}` };
+    },
   }
 };
 
