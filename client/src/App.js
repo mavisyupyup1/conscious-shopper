@@ -35,6 +35,10 @@ import Top5Card from './components/Top5Card';
 import SearchBCard from './components/SearchBCard';
 import Footer from './components/Footer';
 
+import './index.css'
+
+
+
 const stripePromise = loadStripe("pk_test_51KaouJLvQuwH79AnN7yEfoHv5B2ecn6fLOIgKx1siq59pTuioxmpCYDGsAMZtGWZ6eI63rSU9ckt9DZCPVjYNVnZ00iGHVuw44");
 
 const httpLink = createHttpLink({
@@ -61,7 +65,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="">
+        <div className="h-100">
           <NavbarMain />
           <div className="">
             <Switch>

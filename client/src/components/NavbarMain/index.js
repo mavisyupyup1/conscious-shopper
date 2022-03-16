@@ -4,6 +4,8 @@ import Auth from '../../utils/auth'
 
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 
+import './navbarmain.css'
+
 const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -14,7 +16,7 @@ const NavbarMain = () => {
 
     return (
         
-        <Navbar bg="light" expand="lg">
+        <Navbar className='navbarcolor' expand="lg">
             <Container>
                 <Navbar.Brand href="/">
                 <h1>Concious Shopper</h1>

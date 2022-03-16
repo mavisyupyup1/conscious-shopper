@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Card, Badge, Button, Col } from 'react-bootstrap';
 
+import './top5card.css'
+
 var Top5Card = function ({ data, setOrdered }) {
 
   return (
@@ -40,14 +42,14 @@ var Top5Card = function ({ data, setOrdered }) {
                     </Badge>
                     </div>
                     <Card.Text className="text-secondary">{data.desc}</Card.Text>
-                    <Button
+                    <Button 
                     onClick={(e) =>{
                       e.preventDefault()
 
                       console.log('something inocuos')
                     }}
-                    className="mt-auto font-weight-bold"
-                    variant="success"
+                    className="mt-auto font-weight-bold bgcolor"
+                    
                     >
                     More Info  🔍 
                     </Button>
