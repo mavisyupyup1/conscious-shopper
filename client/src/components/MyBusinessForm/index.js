@@ -13,10 +13,10 @@ const MyBusinessForm = () => {
     phone: '',
     description: '',
     image: '',
-    blackOwned: true,
-    womenOwned: false,
-    closing: false,
-    momAndDad: false,
+    blackOwned: ' ',
+    womenOwned: ' ',
+    closing: ' ',
+    momAndDad: ' ',
   });
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
   const [uploadFile] = useMutation(UPLOAD_FILE, {
@@ -42,7 +42,7 @@ const MyBusinessForm = () => {
       });
       // clear form value
       setFormState('');
-document.location.replace('/bpage')
+    document.location.replace('/bpage')
     } catch (e) {
       console.error(e);
     }
@@ -135,8 +135,8 @@ document.location.replace('/bpage')
                   id="womenOwned"
                   onChange={handleChange}
                   value={formState.womenOwned}
+                  defaultValue={true}
                 >
-                   <option value={null}> </option>
                 <option value={true}>Yes</option>
 								<option value={false}>No</option>
                 </select>  
@@ -150,8 +150,8 @@ document.location.replace('/bpage')
                   id="blackOwned"
                   onChange={handleChange}
                   value={formState.blackOwned}
+                  defaultValue={true}
                 >
-                  <option value={null}> </option>
                 <option value={true}>Yes</option>
 								<option value={false}>No</option>
                 </select>
@@ -166,8 +166,8 @@ document.location.replace('/bpage')
                   id="momAndDad"
                   onChange={handleChange}
                   value={formState.momAndDad}
+                  defaultValue={true}
                 >
-                   <option value={null}> </option>
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>
                 </select>
@@ -182,15 +182,15 @@ document.location.replace('/bpage')
                   id="closing"
                   onChange={handleChange}
                   value={formState.closing}
+                  defaultValue={true}
                 >
-                   <option value={null}> </option>
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>
                 </select>
               
               </div>
             </div>
-            <div>
+                    <div>
                       <h1>Upload A image</h1>
                       <input id='image'  type="file" onChange={handleFileChange}></input>
                     </div> 
