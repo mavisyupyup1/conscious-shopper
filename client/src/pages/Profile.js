@@ -39,7 +39,7 @@ const Profile = (props) => {
   }
 
   // redirect to personal profile page if username is yours
-  if (loggedIn && Auth.getProfile().data.username === userParam && paidUser && hasStripeId) {
+  if (loggedIn  && paidUser && hasStripeId) {
     return <Redirect to="/profile" />;
   }
 
@@ -76,7 +76,7 @@ const Profile = (props) => {
       </div>
       
       {/*  BUSINESS FORM - ROW */}
-      {loggedIn && paidUser && !hasStripeId?(<div className="row justify-content-center">
+      {loggedIn && paidUser && hasStripeId?(<div className="row justify-content-center">
         <div className='col-9'>
         <MyBusinessForm/>
         </div>      

@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { CREATE_BUSINESS, UPLOAD_FILE } from '../../utils/mutations';
 import { QUERY_BUSINESS, QUERY_ME } from '../../utils/queries';
-
 import { Card, Badge, Button, Col, Container } from 'react-bootstrap';
-
 
 const MyBusinessForm = () => {
   const [formState, setFormState] = useState({
@@ -15,10 +13,10 @@ const MyBusinessForm = () => {
     phone: '',
     description: '',
     image: '',
-    blackOwned: '',
-    womenOwned: '',
-    closing: '',
-    momAndDad: '',
+    blackOwned: true,
+    womenOwned: false,
+    closing: false,
+    momAndDad: false,
   });
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
   const [uploadFile] = useMutation(UPLOAD_FILE, {

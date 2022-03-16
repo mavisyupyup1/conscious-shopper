@@ -13,12 +13,16 @@ import { Redirect } from 'react-router-dom';
 
 const HomeMain = () => {
   //const { loading, data } = useQuery(QUERY_BUSINESS);
-  //const { data: userData } = useQuery(QUERY_ME_BASIC);
-  // const loggedIn = Auth.loggedIn();
-  // const paidUser = userData?.me.type === "PAID"
-  // const hasStripeId = userData?.me.stripeId !== null
-  // console.log("stripeId:", userData?.me.stripeId)
-  // console.log("Current user:", {loggedIn, paidUser, hasStripeId})
+  const { data: userData } = useQuery(QUERY_ME_BASIC);
+  const loggedIn = Auth.loggedIn();
+  const paidUser = userData?.me.type === "PAID"
+  const hasStripeId = userData?.me.stripeId !== null
+  console.log("stripeId:", userData?.me.stripeId)
+  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
+if (loggedIn && paidUser && !hasStripeId){
+  return <Redirect to="/signup/pay" />;
+}
+else {
 return (
     <Container>
         <Row>
@@ -37,6 +41,6 @@ return (
 
 )
 
-}
+}}
 
 export default HomeMain;
