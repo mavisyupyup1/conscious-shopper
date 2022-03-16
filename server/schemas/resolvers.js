@@ -52,7 +52,7 @@ const resolvers = {
     business: async(parent, { _id }) => {
       return Business.findOne({ _id })
         .select('-__v')
-        .populate('thoughts')
+        .populate({path: 'thoughts', options: { sort: { createdAt: -1}}})
         .populate('votes');
     },
     vote: async(parent, { _id }) => {
@@ -97,7 +97,7 @@ const resolvers = {
         if(thought.businessId){
           await Business.findByIdAndUpdate(
             { _id: thought.businessId },
-            { $push: { thoughts: thought._id } },
+            { $push: { thoughts: thought._id  } },
             { new: true }
           );
         }

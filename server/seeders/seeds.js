@@ -13,48 +13,12 @@ db.once('open', async () => {
         'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       image: 'cookie-tin.jpg',
       location:'622 West 168th St, New York,NY',
+      links:['www.google.com'],
       phone:'646-123-1234',
       blackOwned: true,
       womenOwned:true,
       closing:false,
-      momAndDad: false,
-      thoughts:[]
-    },
-    {
-      title: 'Car Wash',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      location:'2 West 268th St, Bronx,NY',
-      phone:'646-123-1234',
-      blackOwned: true,
-      womenOwned:false,
-      closing:true,
-      momAndDad: false,
-    },
-    {
-      title: 'Dry Cleaning',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      location:' West 16th St, New York,NY',
-      phone:'646-123-1234',
-      blackOwned: false,
-      womenOwned:true,
-      closing:false,
-      momAndDad: true,
-    },
-    {
-      title: 'Flower Shop',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      location:'622 West 168th St, Brooklyn,NY',
-      phone:'646-123-1234',
-      blackOwned: true,
-      womenOwned:true,
-      closing:false,
-      momAndDad: false,
+      momAndDad: false
     }
   ])
   console.log('business seeded');

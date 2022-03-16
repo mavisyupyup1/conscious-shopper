@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
 scalar Upload
+scalar Date
 
   type User {
     _id: ID
@@ -48,7 +49,7 @@ scalar Upload
   type Thought {
     _id: ID
     thoughtText: String
-    createdAt: String
+    createdAt: Date
     userId: ID
     businessId: ID
     username: String

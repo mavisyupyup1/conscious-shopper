@@ -30,14 +30,14 @@ const[uploadFile]= useMutation(UPLOAD_FILE,{
       ...formState,
       [name]: value,
     });
-    const blackOwnedBusiness = document.getElementById('blackOwned').value
-    console.log("BlackOwned: ", blackOwnedBusiness)
+    // const blackOwnedBusiness = document.getElementById('blackOwned').value
+    // console.log("BlackOwned: ", blackOwnedBusiness)
 
-    const womenOwnedBusiness = document.getElementById('womenOwned').value
-    console.log("WomenOwned: ", womenOwnedBusiness)
+    // const womenOwnedBusiness = document.getElementById('womenOwned').value
+    // console.log("WomenOwned: ", womenOwnedBusiness)
     
-    const closingBusiness = document.getElementById('closing').value
-    console.log("Closing: ", closingBusiness)
+    // const closingBusiness = document.getElementById('closing').value
+    // console.log("Closing: ", closingBusiness)
   };
 
   // submit form
