@@ -43,6 +43,8 @@ return (
 
           <Col xs={3} className=' mb-2 mt-2 border border-dark border-5 rounded'>
               <h1>FILTER</h1>
+              <hr></hr>
+              <h5 className="my-2">Current filter: {formState}</h5>
               <form onSubmit={handleFormSubmit}>
                 <div>
                   <input type="radio" id="blackOwned" name="filterValue" value="blackOwned" className="m-1" onFocus={() => {setFormState("blackOwned")}} />

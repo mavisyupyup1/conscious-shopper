@@ -4,6 +4,23 @@ import { Card, Badge, Button, Col } from 'react-bootstrap';
 
 var Top5Card = function ({ data, setOrdered, images }) {
 
+  const pill = () => {
+    const pillValues = [];
+    if(data.blackOwned){
+      pillValues.push("Black Owned")
+    } 
+    if(data.womenOwned) {
+      pillValues.push("Women Owned")
+    }
+    if(data.closing){
+      pillValues.push("Closing")
+    }
+    if(data.momAndDad){
+      pillValues.push("Mom & Dad")
+    }
+    return pillValues
+  }
+
   return (
 
     
@@ -33,23 +50,27 @@ var Top5Card = function ({ data, setOrdered, images }) {
         <Card className=" shadow-sm bg-white rounded mt-2">
             <Card.Img variant="top" src={images.slice(0, 1)} />
                 <Card.Body className="d-flex flex-column">
-                    <div className="d-flex mb-2 justify-content-between">
-                    <Card.Title className="mb-0 font-weight-bold">{data.title}</Card.Title>
-                    <Badge pill className="mb-1" variant="warning">
-                    🔴 {data.womenOwned}
-                    </Badge>
+                    <div className="d-flex flex-column mb-2 justify-content-evenly">
+                      <Card.Title className="text-center font-weight-bold">{data.title}</Card.Title>
+                      <div className="d-flex flex-wrap">
+                        {pill().map(element => (
+                        <Badge pill className="m-2 p-2" variant="warning">
+                        🔴 {element}
+                        </Badge>
+                        )
+                        )}
+                      </div>
                     </div>
                     <Card.Text className="text-secondary">{data.description}</Card.Text>
                     <Button
                     onClick={(e) =>{
                       e.preventDefault()
-
-                      console.log('something inocuos')
+                      document.location.replace(`/bpage/${data._id}`);
                     }}
                     className="mt-auto font-weight-bold"
                     variant="success"
                     >
-                    More Info  🔍 
+                    More Info  🔍
                     </Button>
         </Card.Body>
         </Card>

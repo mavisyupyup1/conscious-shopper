@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth'
 
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';

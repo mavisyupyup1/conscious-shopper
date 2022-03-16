@@ -3,7 +3,6 @@ import { Redirect, useParams } from 'react-router-dom'
 import HeroBusiness from '../components/HeroBusiness'
 import Auth from '../utils/auth';
 
-
 import { Container, Row, Col, Form, Button  } from 'react-bootstrap';
 
 import { useQuery, useMutation } from '@apollo/client';
@@ -90,6 +89,7 @@ const BusinessPage = () => {
                             <h4>Address:  {data.location}</h4>
                             <h4>Phone Number:  {data.phone}</h4>
                             <h4>VoteCount: {data.voteCount}</h4> 
+                            {Auth.loggedIn() ? (
                             <Col className="d-flex" >
                                 <Button 
                                 onClick={()=>{
@@ -109,6 +109,7 @@ const BusinessPage = () => {
                                     <img className="justify-content-center" style={{height: "25px"}} src={require('../assets/images/like.png')} />
                                 </Button>
                             </Col>
+                            ) : ("")}
                         </Row>
                     </Col>
                 </>
