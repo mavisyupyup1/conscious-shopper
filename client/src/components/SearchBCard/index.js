@@ -20,7 +20,7 @@ const SearchBCard = ({ data }) => {
           </Popover.Body>
         </Popover>
     );
-
+console.log(data.links)
     const popover2 = (
         <Popover  bsPrefix="flex bg-white border border-primary "id="popover-basic">
           <Popover.Header as="h3">Come Visit!</Popover.Header>
@@ -64,7 +64,7 @@ return (
                         </OverlayTrigger>
                     </Col>
                     <Col>
-                        <Button className="p-1"><a href={data.links} target="_blank">Go to Website</a>🖥</Button>
+                        <Button className="p-1"><a href={data.links} target="_blank" rel="noreferrer">Go to Website</a>🖥</Button>
                     </Col>
                     <Col>
                         {/* <Button className='m-0'>WEBSITE 🖥</Button> */}
