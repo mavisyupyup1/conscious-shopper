@@ -128,7 +128,7 @@ const MyBusinessForm = () => {
 
              <h4 className="mt-3"> Please select an option that applies to your business</h4> 
                <div className="col-sm-3">
-                 <label htmlFor="blackOwned">Women Owned</label>
+                 <label htmlFor="womenOwned">Women Owned</label>
           <select
                   className="form-select "
                   name="womenOwned"
