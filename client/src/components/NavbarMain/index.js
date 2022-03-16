@@ -5,6 +5,9 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_BUSINESS,QUERY_ME_BASIC } from '../../utils/queries'
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
+
+import './navbarmain.css'
+
 const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -13,7 +16,7 @@ const logout = event => {
 const NavbarMain = () => {
        return (
         
-        <Navbar bg="light" expand="lg">
+        <Navbar className='navbarcolor' expand="lg">
             <Container>
                 <Navbar.Brand href="/">
                 <h1>Conscious Shopper</h1>
