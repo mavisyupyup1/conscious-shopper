@@ -98,7 +98,7 @@ const BusinessPage = () => {
                     <>
                         <Col xs={8} className='mt-2 mb-2  border border-dark border-5 rounded' key={data._id}>
                             <Row>
-                                <h1>{`${data.title}`}</h1>
+                                <h1>{data.title}</h1>
                             </Row>
                             <hr></hr>
                             <Row>
@@ -110,7 +110,7 @@ const BusinessPage = () => {
                             <Row>
                                 <h4>Address:  {data.location}</h4>
                                 <h4>Phone Number:  {data.phone}</h4>
-                                <h4>Website: <a className="btn btn-primary" href={data.links[0]} target="_blank">Website</a></h4>
+                                <h4>Website:{data.links ? ( <><a className="btn btn-primary" href={data.links[0]} target="_blank">Website</a> </>):("")}</h4>
                                 <h4>VoteCount: {data.voteCount}</h4> 
                                 {Auth.loggedIn() ? (
                                 <Col className="d-flex" >
@@ -138,9 +138,9 @@ const BusinessPage = () => {
                                     <h3>Reviews</h3>
                                     {data.thoughts &&
                                         data.thoughts.map(thought => (
-                                            <div key={thought._id} setOrdered={true} className="card mb-3">
+                                            <div key={thought._id}  className="card mb-3">
                                             <div className="card-header" >
-                                                {userData?.me.username}
+                                                <span>{userData?.me.username} ||  </span>
                                                 <Moment fromNow>
                                                      {thought.createdAt}
                                                 </Moment>
