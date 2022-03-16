@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Conscious Shopper
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Acknowledgements](#acknowledgements)
 
-## Available Scripts
+## About the Project
+Conscious Shopper is easy to use app that will let customers and business owners search, review, vote and share small family and minority owned businesses in their area.  This app is an SPA powered by MERN.
 
-In the project directory, you can run:
+All customers will be able to search based on:
+* Location
+* Business type
+* Status (small, family, minority, going out of business) 
+    
+Once the customer finds a desired business he/she will be able to view important information such as address, operation hours, listings, menu and share it.  Consumers will be able to leave comments and vote on businesses.
 
-### `npm start`
+All business owners who purchase a business account will be able to add their business to the Conscious Shopper database including:
+* Images
+* Location
+* Listing
+* Operating hours
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Business owners will be able to view comments about their business and respond to their consumers.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Built With
+* [React](https://es.reactjs.org/docs/getting-started.html)
+* [GraphQL](https://graphql.org/)
+* [Stripe](https://stripe.com/?utm_campaign=paid_brand-US_Search_Brand_Stripe-1803852691&utm_medium=cpc&utm_source=google&ad_content=448938759963&utm_term=kwd-279203062&utm_matchtype=p&utm_adposition=&utm_device=c&gclid=CjwKCAjwlcaRBhBYEiwAK341jeCBBQdH9R-Ykv7J5DxoXYTUg2FzLD1tUyafJISfNo-hYW0XNDnjKRoC8H8QAvD_BwE)
+* [Apollo](https://www.apollographql.com/docs/)
+* [Express.js](https://expressjs.com/)
 
-### `npm test`
+## Installation
+Follow these instructions to run Conscious Shopper locally:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+First, clone or download the code base [here](https://github.com/mavisyupyup1/project-3-group-d).
 
-### `npm run build`
+From your CLI, navigate into the root directory, server, and client folders to install each of the packages. Run the following code block:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
+To use Conscious Shopper online, visit [Conscious Shopper](https://enigmatic-basin-52191.herokuapp.com/). 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Search for businesses from the homepage.
+![image](./public/images/homepage.png)
 
-### `npm run eject`
+To search for businesses or create a new business, visit the sign up page where you can select a free or paid profile.
+![image](./public/images/signup.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+As a business owner, once you have paid the subscription, you are taken to the business information page.
+![image](public/images/createbusiness.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As a consumer, businesses can be filtered according to the specific types of small business in your area.
+![image](public/images/searchbusiness.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
+Conscious Shopper was built by group-D of Columbia Engineering's Full-Stack Coding Bootcamp.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Each person contributed concepts and code throughout the development process. Explore group-e's repositories to see what else we're up to:
 
-## Learn More
+* [Denva Emsley](https://github.com/Demsley1)
+* [Grace Liu](https://github.com/mavisyupyup1)
+* [Alvaro Oremeno](https://github.com/alvaroormeno)
+* [Rebecca Byrne](https://github.com/RPB543)
+* [John Harris](https://github.com/jharris92)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Acknowledgements 
+Group-D would like to thank our instructional team at Columbia Engineering Full-Stack Coding Bootcamp for their enduring support!
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Want to Help?
+Do you see something we missed or a more succint and effective way this code can be written? Great! Please reach out to any of the contributors and let us know how we can improve. Thanks in advance for your tips, tricks, and pointers!
