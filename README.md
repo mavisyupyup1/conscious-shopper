@@ -48,16 +48,16 @@ npm install
 To use Conscious Shopper online, visit [Conscious Shopper](https://enigmatic-basin-52191.herokuapp.com/). 
 
 Search for businesses from the homepage.
-![image](./public/images/homepage.png)
+![image](client/public/images/homepage.png)
 
 To search for businesses or create a new business, visit the sign up page where you can select a free or paid profile.
-![image](./public/images/signup.png)
+![image](client/public/images/signup.png)
 
 As a business owner, once you have paid the subscription, you are taken to the business information page.
-![image](public/images/createbusiness.png)
+![image](client/public/images/createbusiness.png)
 
 As a consumer, businesses can be filtered according to the specific types of small business in your area.
-![image](public/images/searchbusiness.png)
+![image](client/public/images/searchbusiness.png)
 
 ## Contributing
 Conscious Shopper was built by group-D of Columbia Engineering's Full-Stack Coding Bootcamp.
