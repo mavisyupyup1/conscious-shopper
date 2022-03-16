@@ -1,9 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth'
-import { useQuery } from '@apollo/client';
 
-import { QUERY_BUSINESS,QUERY_ME_BASIC } from '../../utils/queries'
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 
 import './navbarmain.css'
@@ -26,22 +23,21 @@ const NavbarMain = () => {
                     <Nav>
                     {Auth.loggedIn()?(
                         <>
-                        <Nav.Link href="/search">MainSearch</Nav.Link>
-                        <Nav.Link href="/bpage">Business Page</Nav.Link>
-                      
-                            <>
-                        <Nav.Link href="/profile">My Business</Nav.Link>    
-                            </>
-                        <a className="btn btn-block btn-outline-danger" href ='/' onClick={logout}>
-                        Logout
-                        </a>
+                        <Button variant="outline-secondary" className="me-2">
+                            <Nav.Link href="/profile">My Business</Nav.Link>
+                        </Button>
+                        <Button variant="outline-secondary" className="me-2">
+                            <Nav.Link href="/bpage">Business Page</Nav.Link>
+                        </Button>
+                        <Button variant="outline-danger" className="me-2">
+                            <Nav.Link href ='/' onClick={logout}>Logout</Nav.Link>
+                        </Button>
                         </>
                     ) : (
                         <>
                         <Button variant="outline-secondary" className="me-2">
                             <Nav.Link href="/login">Login</Nav.Link>
                         </Button>
-                        
                         <Button variant="outline-secondary">
                             <Nav.Link href="/signup">Signup</Nav.Link>
                         </Button>

@@ -58,7 +58,6 @@ const MyBusinessForm = () => {
      
   }
   return (
-
 		<>
 			<Container>
 
@@ -485,7 +484,9 @@ const MyBusinessForm = () => {
             <option value={false}>No</option>
           </select>
         </div>
-
+        </form>
+    </div>
+  </>
   );
 };
 

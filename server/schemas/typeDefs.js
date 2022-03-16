@@ -28,16 +28,14 @@ scalar Date
     description: String
     userId: ID
     image: [String]
-    blackOwned: String
-    womenOwned: String
-    closing: String
-    momAndDad: String
+    blackOwned: Boolean
+    womenOwned: Boolean
+    closing: Boolean
+    momAndDad: Boolean
     thoughts: [Thought]
     voteCount: Int
     votes: [Vote]
   }
-
-
 
   type File {
     filename: String!
@@ -67,8 +65,8 @@ scalar Date
   type Vote {
     _id: ID
     voteType: String
-    userId: ID!
-    businessId: ID!
+    userId: ID
+    businessId: ID
   }
 
   type Auth {
@@ -84,9 +82,11 @@ scalar Date
     thought(_id: ID!): Thought
     allBusiness: [Business] 
     business(_id: ID!): Business
+    votes: [Vote]
     vote(_id: ID!): Vote
     stripeId: String
     type: String
+    feed(filter: String): [Business]
   }
 
   type Mutation {

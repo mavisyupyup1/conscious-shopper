@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom'
 import HeroBusiness from '../components/HeroBusiness'
 import Auth from '../utils/auth';
@@ -7,23 +7,24 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import SearchBCard from '../components/SearchBCard';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_BUSINESS, QUERY_ME, QUERY_ME_BASIC, QUERY_THOUGHT, QUERY_USER } from '../utils/queries';
-import { ADD_THOUGHT } from '../utils/mutations';
+import { ADD_THOUGHT, NEW_VOTE, UPDATE_VOTE } from '../utils/mutations';
 
 const BusinessPage = () => {
     const loggedIn = Auth.loggedIn();
+    const [thoughtText, setText] = useState('');
+    const [vote] = useMutation(NEW_VOTE);
+    const [updateVote] = useMutation(UPDATE_VOTE);
+    const [addThought] = useMutation(ADD_THOUGHT,{refetchQueries:[QUERY_BUSINESS]})
     const { id: businessParam } = useParams();
     const { loading, data } = useQuery(businessParam ? QUERY_BUSINESS : QUERY_ME, {
         variables: { id: businessParam }
     });
-console.log(data)
-    console.log(data?.business)
-    const [thoughtText, setText] = useState('');
-    const [addThought] = useMutation(ADD_THOUGHT,{refetchQueries:[QUERY_BUSINESS]})
-   
-  
     const { data:userData } = useQuery(QUERY_ME_BASIC);
-   
-    console.log(userData)
+
+    const business = businessParam ? [data?.business] : data?.me.businesses
+    if (loading) {
+        return <div>Loading...</div>
+    };
     
     const handleChange = (event) => {
         setText(event.target.value);
@@ -37,21 +38,55 @@ console.log(data)
             });
             // clear form value
             setText('');
-            console.log(businessParam)
         } catch (e) {
             console.error(e);
         }
     };
-    const business = businessParam ? [data?.business] : data?.me.businesses
-    if (loading) {
-        return <div>Loading...</div>
-    };
+    
 
-    /*if(Auth.loggedIn() && Auth.getProfile().data._id === businessParam){
+    /*if(Auth.loggedIn() && Auth.getProfile().data._id === data.businesses.userId){
         return <Redirect to="/bpage" />
     }*/
-    // console.log(data?.business.thoughts)
-    return (
+
+    const handleSaveVote = async(voteType, businessId) => {
+       const userId = Auth.getProfile().data._id
+       const matches = data?.business.votes.filter(userVotes => {
+           return userId == userVotes.userId && voteType == userVotes.voteType
+       });
+
+       if(matches.length > 0){
+           console.log("User has already voted")
+           return;
+       }
+
+       const typeMatches = data?.business.votes.filter(userVotes => {
+           return userId == userVotes.userId && voteType != userVotes.voteType
+       });
+
+       if(typeMatches.length > 0){
+           const id = typeMatches[0]._id
+           try{
+                const { data } = await updateVote({
+                variables: {voteType: voteType, id: id }
+                })
+                document.location.reload();
+                return data 
+            } catch(err){
+                console.error(err)
+            }
+       }
+        
+        try {
+            await vote({
+                variables: { voteType: voteType, businessId: businessId }
+            });
+            document.location.reload();
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
+    return(
         <Container>
 
             <Row>
@@ -59,7 +94,7 @@ console.log(data)
             </Row>
 
             <Row>
-                {!business ? <div>Sorry An error has Occurred</div> : business.map(data => (
+                {!business ? <div> There is no business Data. Upgrade your account, or create a business to get full use of this page!!</div> : business.map(data => (
                     <>
                         <Col xs={8} className='mt-2 mb-2  border border-dark border-5 rounded' key={data._id}>
                             <Row>
@@ -75,7 +110,29 @@ console.log(data)
                             <Row>
                                 <h4>Address:  {data.location}</h4>
                                 <h4>Phone Number:  {data.phone}</h4>
-                                <h4>Website: {data.links[0]}</h4>
+                                <h4>Website: <a className="btn btn-primary" href={data.links[0]} target="_blank">Website</a></h4>
+                                <h4>VoteCount: {data.voteCount}</h4> 
+                                {Auth.loggedIn() ? (
+                                <Col className="d-flex" >
+                                    <Button 
+                                    onClick={()=>{
+                                        const businessId=`${data._id}`
+                                        handleSaveVote('downVote', businessId )
+                                    }}
+                                    variant="outline-light" className="mx-3" style={{width:"20px"}}>
+                                        <img className="justify-content-center" style={{height: "25px"}} src={require('../assets/images/dislike.png')} />
+                                    </Button>
+
+                                    <Button 
+                                    onClick={()=>{
+                                        const businessId=`${data._id}`
+                                        handleSaveVote('upVote', businessId )
+                                    }}
+                                    variant="outline-light" className="mx-3"style={{width:"20px"}}>
+                                        <img className="justify-content-center" style={{height: "25px"}} src={require('../assets/images/like.png')} />
+                                    </Button>
+                                </Col>
+                                ) : ("")}
                                 <div>
                                 <hr></hr>   
                                     <h3>Reviews</h3>
@@ -100,7 +157,12 @@ console.log(data)
                             </Row>
                         </Col>
                     </>
-                ))}
+                    ))}
+                   
+            </Row>
+            
+
+            <Row>
                 {loggedIn ? <Col xs={4} className='mt-2 my-2 border border-dark border-5 rounded'>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
