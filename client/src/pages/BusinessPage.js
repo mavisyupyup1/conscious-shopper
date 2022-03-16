@@ -83,7 +83,7 @@ console.log(data)
                                         data.thoughts.map(thought => (
                                             <div key={thought._id} setOrdered={true} className="card mb-3">
                                             <div className="card-header" >
-                                                {userData.me.username}
+                                                {userData?.me.username}
                                                 <Moment fromNow>
                                                      {thought.createdAt}
                                                 </Moment>
