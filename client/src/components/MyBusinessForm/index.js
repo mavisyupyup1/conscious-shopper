@@ -13,7 +13,7 @@ const MyBusinessForm = () => {
     phone: '',
     description: '',
     image: '',
-    blackOwned: true,
+    blackOwned: false,
     womenOwned: false,
     closing: false,
     momAndDad: false,
@@ -52,7 +52,7 @@ document.location.replace('/bpage')
     console.log(file);
     const fileName = file.name
     setFormState({
-      ...formState,
+      // ...formState,
       image: fileName
     });
     console.log(fileName)
@@ -136,7 +136,7 @@ document.location.replace('/bpage')
                   onChange={handleChange}
                   value={formState.womenOwned}
                 >
-                   <option value={null}> </option>
+                   {/* <option value={null}> </option> */}
                 <option value={true}>Yes</option>
 								<option value={false}>No</option>
                 </select>  
@@ -151,7 +151,7 @@ document.location.replace('/bpage')
                   onChange={handleChange}
                   value={formState.blackOwned}
                 >
-                  <option value={null}> </option>
+                  {/* <option value={null}> </option> */}
                 <option value={true}>Yes</option>
 								<option value={false}>No</option>
                 </select>
@@ -167,7 +167,7 @@ document.location.replace('/bpage')
                   onChange={handleChange}
                   value={formState.momAndDad}
                 >
-                   <option value={null}> </option>
+                   {/* <option value={null}> </option> */}
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>
                 </select>
@@ -183,7 +183,7 @@ document.location.replace('/bpage')
                   onChange={handleChange}
                   value={formState.closing}
                 >
-                   <option value={null}> </option>
+                   {/* <option value={null}> </option> */}
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>
                 </select>
