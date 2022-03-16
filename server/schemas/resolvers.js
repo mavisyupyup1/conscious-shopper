@@ -1,7 +1,11 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought, Business, Vote } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const path = require('path')
+const fs = require('fs')
+const stream = require('stream')
+const { GraphQLUpload,graphqlUploadExpress, } = require("graphql-upload");
+const { finished } = require('stream');
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -49,18 +53,46 @@ const resolvers = {
     business: async(parent, { _id }) => {
       return Business.findOne({ _id })
         .select('-__v')
-        .populate('thoughts')
+        .populate({path: 'thoughts', options: { sort: { createdAt: -1}}})
         .populate('votes');
+    },
+    votes: async() => {
+      return Vote.find()
+      .select('__v')
+      .populate('business')
     },
     vote: async(parent, { _id }) => {
       return Vote.findOne({ _id })
         .select('-__v')
+    },
+    feed: async(parent, args) => {
+      switch(args.filter){
+        case 'blackOwned': 
+          var show = {blackOwned: true}
+          break;
+        case 'womenOwned':
+          var show = {womenOwned: true}
+          break;
+        case 'closing':
+          var show = {closing: true}
+          break;
+        case 'momAndDad':
+          var show = {momAndDad: true}
+          break;
+        default:
+          var show = {}
+          break;
+      }
+      
+      const results = await Business.find(show)
+
+      return results;
     }
   },
-
+  Upload: GraphQLUpload,
   Mutation: {
-    addUser: async (parent, { userCreate }) => {
-      const user = await User.create(userCreate);
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
@@ -91,11 +123,13 @@ const resolvers = {
           { new: true }
         );
 
-        await Business.findByIdAndUpdate(
-          { _id: thought.businessId },
-          { $push: { thoughts: thought._id } },
-          { new: true }
-        );
+        if(thought.businessId){
+          await Business.findByIdAndUpdate(
+            { _id: thought.businessId },
+            { $push: { thoughts: thought._id  } },
+            { new: true }
+          );
+        }
 
         return thought;
       }
@@ -176,7 +210,47 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
+    addStripe: async(parent, { stripeId },context)=>{
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { stripeId: stripeId },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    // addImage: async(parent, { fileName },context)=>{
+    //   if (context.user) {
+    //     const updatedUser = await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { image: fileN },
+    //       { new: true }
+    //     );
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+
+    uploadFile: async (parent, { file }) => {
+      const { createReadStream, filename, mimetype, encoding } = await file;
+
+      // Invoking the `createReadStream` will return a Readable Stream.
+      // See https://nodejs.org/api/stream.html#stream_readable_streams
+      const stream = createReadStream();
+
+      // This is purely for demonstration purposes and will overwrite the
+      // local-file-output.txt in the current working directory on EACH upload.
+      const out = fs.createWriteStream(path.join(__dirname,`../../client/public/images/${filename}`));
+      stream.pipe(out);
+      await finished(out);
+    
+      return  { filename, mimetype, encoding };
+      //return { url:`http://localhost:3000/images/${filename}` };
+    },
   }
 };
 

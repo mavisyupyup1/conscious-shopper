@@ -10,11 +10,10 @@ const thoughtSchema = new Schema(
       minlength: 1,
       maxlength: 280
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: timestamp => dateFormat(timestamp)
-    },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now
+    // },
     username: {
       type: String,
       required: true
@@ -33,7 +32,8 @@ const thoughtSchema = new Schema(
     toJSON: {
       getters: true,
       virtuals: true
-    }
+    },
+    timestamps: true
   }
 );
 

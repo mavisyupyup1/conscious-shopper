@@ -1,18 +1,23 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+scalar Upload
+scalar Date
+
   type User {
     _id: ID
     username: String
     email: String
     friendCount: Int
-    accountType: String
     businesses: [Business]
     thoughts: [Thought]
     friends: [User]
     votes: [Vote]
+    stripeId:String
+    type:String
   }
-
+ 
   type Business {
     _id: ID
     title: String
@@ -25,15 +30,24 @@ const typeDefs = gql`
     image: [String]
     blackOwned: Boolean
     womenOwned: Boolean
+    closing: Boolean
+    momAndDad: Boolean
     thoughts: [Thought]
     voteCount: Int
     votes: [Vote]
   }
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+
+  }
+
   type Thought {
     _id: ID
     thoughtText: String
-    createdAt: String
+    createdAt: Date
     userId: ID
     businessId: ID
     username: String
@@ -51,8 +65,8 @@ const typeDefs = gql`
   type Vote {
     _id: ID
     voteType: String
-    userId: ID!
-    businessId: ID!
+    userId: ID
+    businessId: ID
   }
 
   type Auth {
@@ -68,25 +82,25 @@ const typeDefs = gql`
     thought(_id: ID!): Thought
     allBusiness: [Business] 
     business(_id: ID!): Business
+    votes: [Vote]
     vote(_id: ID!): Vote
-  }
-
-  input userCreate {
-    username: String!
-    email: String!
-    password: String!
-    accountType: String!
+    stripeId: String
+    type: String
+    feed(filter: String): [Business]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(userCreate: userCreate!): Auth
+    addUser(username: String!, email: String!, password: String!, type: String, stripeId:String): Auth
     addThought(thoughtText: String!, businessId: ID): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
     addBusiness(business: businessCreate!): Business
     addVote(voteType: String!, businessId: ID!): Vote
     updateVote(voteType: String!, _id: ID!): Vote
+    addStripe(stripeId:String):User,
+    uploadFile(file: Upload!): File!
+    addImage(image: String!): Business
   }
 
   input businessCreate {
@@ -96,8 +110,10 @@ const typeDefs = gql`
     phone: String!
     description: String!
     image: [String]
-    blackOwned: Boolean
-    womenOwned: Boolean
+    blackOwned: String
+    womenOwned: String
+    closing:String
+    momAndDad:String
   }
 `;
 
