@@ -244,7 +244,8 @@ const resolvers = {
 
       // This is purely for demonstration purposes and will overwrite the
       // local-file-output.txt in the current working directory on EACH upload.
-      const out = fs.createWriteStream(path.join(__dirname,`../../client/public/images/${filename}`));
+      const pathName = process.env.NODE_ENV === 'production' ? path.join(__dirname,`../../client/build/images/${filename}`) : path.join(__dirname,`../../client/public/images/${filename}`)
+      const out = fs.createWriteStream(pathName);
       stream.pipe(out);
       await finished(out);
     
