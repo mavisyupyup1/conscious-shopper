@@ -152,8 +152,6 @@ export const QUERY_ME = gql`
         votes {
           _id
           voteType
-          userId
-          businessId
         }
       }
       friends {
@@ -175,7 +173,6 @@ export const QUERY_ME = gql`
       votes {
         _id
         voteType
-        userId
         businessId
       }
     }
@@ -216,6 +213,45 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+export const QUERY_ALL_BUSINESS = gql`
+  query allBusiness{
+    allBusiness{
+      _id
+      title
+      createdAt
+      location
+      links
+      phone
+      description
+      userId
+      image
+      blackOwned
+      womenOwned
+      closing
+      momAndDad
+      thoughts {
+        _id
+        thoughtText
+        createdAt
+        reactionCount
+        reactions {
+          _id
+          createdAt
+          reactionBody
+          username
+        }
+      }
+      voteCount
+      votes {
+        _id
+        voteType
+        userId
+        businessId
+      }
+    }
+  }
+`
 
 export const QUERY_BUSINESS = gql`
   query business($id: ID!){

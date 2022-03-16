@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import {
+import{createUploadLink}from'apollo-upload-client'
+import {from,HttpLink ,
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
@@ -45,6 +45,11 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+const clientUpload =createUploadLink({
+  link:createUploadLink({
+    uri:'/graphql'
+  })
+})
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -56,8 +61,15 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const additiveLink = from([
+  createUploadLink(),
+  
+  authLink.concat(new HttpLink({ uri: '/graphql'}))
+])
+
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(clientUpload),
   cache: new InMemoryCache(),
 });
 
@@ -72,6 +84,7 @@ function App() {
               <Route exact path="/" component={HomeMain} />
               <Route exact path="/search" component={MainSearch} />
               <Route exact path="/bpage" component={BusinessPage} />
+              <Route exact path="/bpage/:id" component={BusinessPage} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route path="/signup/pay" component={() => {

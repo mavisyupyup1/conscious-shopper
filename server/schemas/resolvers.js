@@ -1,7 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought, Business, Vote } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const path = require('path')
+const fs = require('fs')
+const stream = require('stream')
+const { GraphQLUpload,graphqlUploadExpress, } = require("graphql-upload");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -49,7 +52,7 @@ const resolvers = {
     business: async(parent, { _id }) => {
       return Business.findOne({ _id })
         .select('-__v')
-        .populate('thoughts')
+        .populate({path: 'thoughts', options: { sort: { createdAt: -1}}})
         .populate('votes');
     },
     vote: async(parent, { _id }) => {
@@ -57,7 +60,7 @@ const resolvers = {
         .select('-__v')
     }
   },
-
+  Upload: GraphQLUpload,
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -94,7 +97,7 @@ const resolvers = {
         if(thought.businessId){
           await Business.findByIdAndUpdate(
             { _id: thought.businessId },
-            { $push: { thoughts: thought._id } },
+            { $push: { thoughts: thought._id  } },
             { new: true }
           );
         }
@@ -179,17 +182,33 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    addStripe: async(parent,args,context)=>{
+    addStripe: async(parent, { stripeId },context)=>{
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { stripeId:token.token.id},
+          { stripeId: stripeId },
           { new: true }
         );
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
+
+    uploadFile: async (parent, { file }) => {
+      const { createReadStream, filename, mimetype, encoding } = await file;
+
+      // Invoking the `createReadStream` will return a Readable Stream.
+      // See https://nodejs.org/api/stream.html#stream_readable_streams
+      // const stream = createReadStream();
+
+      // This is purely for demonstration purposes and will overwrite the
+      // local-file-output.txt in the current working directory on EACH upload.
+      const pathName = path.join(__dirname,`../../client/public/images/${filename}`)
+      await stream.pipe(fs.createWriteStream(pathName));
+    
+      return  { filename, mimetype, encoding };
+      //return { url:`http://localhost:3000/images/${filename}` };
+    },
   }
 };
 

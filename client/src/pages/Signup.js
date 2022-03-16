@@ -23,6 +23,8 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
+    const accountType = document.getElementById('type').value
+    console.log(accountType)
   };
 
   // submit form
@@ -78,7 +80,7 @@ const Signup = () => {
                 onChange={handleChange}
               />
               <label htmlFor="type">Choose An Account Type:</label>
-              <select className="form-input" name="type" id="type" onChange={handleChange}>
+              <select className="form-input" name="type" id="type" onChange={handleChange} value={formState.type}>
                 <option value="FREE">Customer Account (Free)</option>
                 <option value="PAID">Business Account ($1.99)</option>
               </select>
