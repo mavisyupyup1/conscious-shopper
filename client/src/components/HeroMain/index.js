@@ -42,8 +42,8 @@ console.log("Clicked")
                     <Form.Control type="searchCity"
                     name="searchCity" 
                     placeholder="search" className="shadow p-3 mb-5 bg-body rounded" value={searchState.searchCity} onChange={handleChange}/>
-                    <Button variant="primary" className="button-search" type='submit' onClick={handleSearch}>Search!</Button>
-                    <Button variant="outline-info" className="me-2">
+                    {/* <Button variant="primary" className="button-search" type='submit' onClick={handleSearch}>Search!</Button> */}
+                    <Button variant="primary" className="button-search">
                         <Nav.Link href="/search">MainSearch</Nav.Link>
                     </Button>
                 </FloatingLabel>
