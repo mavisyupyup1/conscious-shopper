@@ -17,6 +17,7 @@ const MyBusinessForm = () => {
     womenOwned: ' ',
     closing: ' ',
     momAndDad: ' ',
+
   });
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
   const [uploadFile] = useMutation(UPLOAD_FILE, {
@@ -48,32 +49,32 @@ const MyBusinessForm = () => {
     }
   };
   const handleFileChange = e => {
+    e.preventDefault();
     const file = e.target.files[0];
     console.log(file);
     const fileName = file.name
     setFormState({
       ...formState,
-      image: fileName
+      ["image"]: fileName
     });
-    console.log(fileName)
     if (!file) return
     uploadFile({ variables: { file } })
-    
   }
+
   return (
 <Container>
       <div className=" m-4 card border border-dark border-5 rounded " style={{width: "45rem"}}>
           <div className="card-header ">       
-                      <h1 className={`m-0 ${error ? "text-error" : ""}`}>
+                      <h3 className={`m-0 ${error ? "text-error" : ""}`}>
                      
                         Enter your business:
                         {error && (
                           <span className="ml-2">Something went wrong...</span>
                         )}
-                      </h1>
+                      </h3>
                       <div className="cardbody">
                       <form
-                        className="flex-row justify-center justify-space-between-md align-stretch"
+                        // className="flex-row justify-center justify-space-between-md align-stretch"
                         onSubmit={handleFormSubmit}
                       >
                          <div className="my-3 mx-3" >
@@ -84,6 +85,7 @@ const MyBusinessForm = () => {
                             type="text"
                             id="text"
                             value={formState.title}
+                            className="form-control"
                             onChange={handleChange}
                           />
                         </div>
@@ -95,12 +97,12 @@ const MyBusinessForm = () => {
                             type="text"
                             id="location"
                             value={formState.location}
-                            className="form-input col-12 col-md-9"
+                            className="form-control"
                             onChange={handleChange}
                           />
                         </div>
 
-                        <div>
+                        <div className="my-3 mx-3">
                           <label htmlFor="links">Website </label>
                           <input
                             placeholder="e.g. www.riverdalekenshikai.com"
@@ -108,7 +110,7 @@ const MyBusinessForm = () => {
                             type="text"
                             id="text"
                             value={formState.links}
-                            className="form-input col-12 col-md-9"
+                            className="form-control"
                             onChange={handleChange}
                           />
                         </div>
@@ -120,92 +122,95 @@ const MyBusinessForm = () => {
                             type="phone"
                             id="phone"
                             value={formState.phone}
-                            className="form-input col-12 col-md-9"
+                            className="form-control"
                             onChange={handleChange}
                           />
                         </div>
-                        <div className=" row my-3 mx-3 ">
 
-             <h4 className="mt-3"> Please select an option that applies to your business</h4> 
-               <div className="col-sm-3">
-                 <label htmlFor="womenOwned">Women Owned</label>
-          <select
-                  className="form-select "
-                  name="womenOwned"
-                  id="womenOwned"
-                  onChange={handleChange}
-                  value={formState.womenOwned}
-                  defaultValue={true}
-                >
-                <option value={true}>Yes</option>
-								<option value={false}>No</option>
-                </select>  
-              </div>
-              
-              <div className="col-sm-3">
-                <label htmlFor="blackOwned">Black Owned	</label>
-                <select
-                  className="form-select"
-                  name="blackOwned"
-                  id="blackOwned"
-                  onChange={handleChange}
-                  value={formState.blackOwned}
-                  defaultValue={true}
-                >
-                <option value={true}>Yes</option>
-								<option value={false}>No</option>
-                </select>
-              </div>
-              <div className="col-sm-3">
-              <label htmlFor="momAndDad">
-                Family Owned
-              </label>            
-                <select
-                  className="form-select"
-                  name="momAndDad"
-                  id="momAndDad"
-                  onChange={handleChange}
-                  value={formState.momAndDad}
-                  defaultValue={true}
-                >
-                  <option value={true}>Yes</option>
-                  <option value={false}>No</option>
-                </select>
-              </div>
-              <div className="col-sm-3">
-              <label htmlFor="closing">
-                Closing Soon
-              </label>
-                <select
-                  className="form-select"
-                  name="closing"
-                  id="closing"
-                  onChange={handleChange}
-                  value={formState.closing}
-                  defaultValue={true}
-                >
-                  <option value={true}>Yes</option>
-                  <option value={false}>No</option>
-                </select>
-              
-              </div>
-            </div>
+                        {/*  CHOSE BUSINESS TYPE  */}
+                        <h4 className="mt-3"> Please select an option that applies to your business</h4> 
+                       <div className="col-sm-3">
+                         <label htmlFor="womenOwned">Women Owned</label>
+                  <select
+                          className="form-select "
+                          name="womenOwned"
+                          id="womenOwned"
+                          onChange={handleChange}
+                          value={formState.womenOwned}
+                          defaultValue={true}
+                        >
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                        </select>  
+                      </div>
+
+                      <div className="col-sm-3">
+                        <label htmlFor="blackOwned">Black Owned	</label>
+                        <select
+                          className="form-select"
+                          name="blackOwned"
+                          id="blackOwned"
+                          onChange={handleChange}
+                          value={formState.blackOwned}
+                          defaultValue={true}
+                        >
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                        </select>
+                      </div>
+                      <div className="col-sm-3">
+                      <label htmlFor="momAndDad">
+                        Family Owned
+                      </label>            
+                        <select
+                          className="form-select"
+                          name="momAndDad"
+                          id="momAndDad"
+                          onChange={handleChange}
+                          value={formState.momAndDad}
+                          defaultValue={true}
+                        >
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </div>
+                      <div className="col-sm-3">
+                      <label htmlFor="closing">
+                        Closing Soon
+                      </label>
+                        <select
+                          className="form-select"
+                          name="closing"
+                          id="closing"
+                          onChange={handleChange}
+                          value={formState.closing}
+                          defaultValue={true}
+                        >
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+
+                      </div>
+                    </div>
                     <div>
                       <h1>Upload A image</h1>
                       <input id='image'  type="file" onChange={handleFileChange}></input>
                     </div> 
 
-
-                        <label className="my-3 mx-3" htmlFor="description">Description </label>
-                        <textarea
-                          placeholder="Tell us more about your business"
-                          name="description"
-                          type="text"
-                          id="description"
-                          value={formState.description}
-                          className="form-input col-12 col-md-9"
-                          onChange={handleChange}
-                        />
+                        {/*  BUSINESS DESCRIPTION */}
+                        <div class=" row mb-3 mx-4 ">
+                          <h4 class="mt-1"> Tell us about to your business</h4> 
+                          <label htmlFor="description"> </label>
+                          <textarea
+                            placeholder="Tell us more about your business"
+                            name="description"
+                            type="text"
+                            id="description"
+                            value={formState.description}
+                            className="form-control col-12 col-md-9"
+                            onChange={handleChange}
+                          />
+                        </div>
 
                         <button className="btn btn-primary w-50" type="submit">
                           Submit
