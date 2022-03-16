@@ -64,7 +64,8 @@ return (
                         </OverlayTrigger>
                     </Col>
                     <Col>
-                        <Button className="p-1"><a href={data.links} target="_blank" rel="noreferrer">Go to Website</a>🖥</Button>
+                    
+                        <a href={data.link} target="_blank" /><Button className="p-1"><a href={data.links} target="_blank" rel="noopener noreferrer">Go to Website</a>🖥</Button>
                     </Col>
                     <Col>
                         {/* <Button className='m-0'>WEBSITE 🖥</Button> */}

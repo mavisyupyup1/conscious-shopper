@@ -48,8 +48,8 @@ document.location.replace('/bpage')
     }
   };
   const handleFileChange = e => {
-    const file = e.target.files[0]
-    console.log(file.name)
+    const file = e.target.files[0];
+    console.log(file);
     const fileName = file.name
     setFormState({
       ...formState,

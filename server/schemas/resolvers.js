@@ -5,6 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const stream = require('stream')
 const { GraphQLUpload,graphqlUploadExpress, } = require("graphql-upload");
+const { finished } = require('stream');
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -239,12 +240,13 @@ const resolvers = {
 
       // Invoking the `createReadStream` will return a Readable Stream.
       // See https://nodejs.org/api/stream.html#stream_readable_streams
-      // const stream = createReadStream();
+      const stream = createReadStream();
 
       // This is purely for demonstration purposes and will overwrite the
       // local-file-output.txt in the current working directory on EACH upload.
-      const pathName = path.join(__dirname,`../../client/public/images/${filename}`)
-      await stream.pipe(fs.createWriteStream(pathName));
+      const out = fs.createWriteStream(path.join(__dirname,`../../client/public/images/${filename}`));
+      stream.pipe(out);
+      await finished(out);
     
       return  { filename, mimetype, encoding };
       //return { url:`http://localhost:3000/images/${filename}` };
