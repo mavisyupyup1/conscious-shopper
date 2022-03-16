@@ -19,12 +19,8 @@ console.log(data)
     console.log(data?.business)
     const [thoughtText, setText] = useState('');
     const [addThought] = useMutation(ADD_THOUGHT,{refetchQueries:[QUERY_BUSINESS]})
-   
-  
     const { data:userData } = useQuery(QUERY_ME_BASIC);
-   
     console.log(userData)
-    
     const handleChange = (event) => {
         setText(event.target.value);
     };
@@ -81,9 +77,9 @@ console.log(data)
                                     <h3>Reviews</h3>
                                     {data.thoughts &&
                                         data.thoughts.map(thought => (
-                                            <div key={thought._id} setOrdered={true} className="card mb-3">
+                                            <div key={thought._id}  className="card mb-3">
                                             <div className="card-header" >
-                                                {userData?.me.username}
+                                                <span>{userData?.me.username} ||  </span>
                                                 <Moment fromNow>
                                                      {thought.createdAt}
                                                 </Moment>

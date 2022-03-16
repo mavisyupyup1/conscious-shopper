@@ -28,9 +28,8 @@ const NavbarMain = () => {
                         <>
                         <Nav.Link href="/search">MainSearch</Nav.Link>
                         <Nav.Link href="/bpage">Business Page</Nav.Link>
-                      
                             <>
-                        <Nav.Link href="/profile">My Business</Nav.Link>    
+                        <Nav.Link href="/profile">My Profile</Nav.Link>    
                             </>
                         <a className="btn btn-block btn-outline-danger" href ='/' onClick={logout}>
                         Logout

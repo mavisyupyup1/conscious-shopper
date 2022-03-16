@@ -100,7 +100,7 @@ scalar Date
     updateVote(voteType: String!, _id: ID!): Vote
     addStripe(stripeId:String):User,
     uploadFile(file: Upload!): File!
-
+    addImage(image: String!): Business
   }
 
   input businessCreate {

@@ -37,9 +37,7 @@ const Profile = (props) => {
       console.error(e)
     }
   }
-if(loggedIn && paidUser && !hasStripeId) {
-  return <Redirect to="/signup/pay" />;
-}
+
   // redirect to personal profile page if username is yours
   if (loggedIn && Auth.getProfile().data.username === userParam && paidUser && hasStripeId) {
     return <Redirect to="/profile" />;
@@ -78,11 +76,12 @@ if(loggedIn && paidUser && !hasStripeId) {
       </div>
       
       {/*  BUSINESS FORM - ROW */}
-      <div className="row justify-content-center">
+      {loggedIn && paidUser && !hasStripeId?(<div className="row justify-content-center">
         <div className='col-9'>
         <MyBusinessForm/>
         </div>      
       </div>
+      ):null}
       
       {/* THOUGHT LIST  */}
       <div className="flex-row justify-space-between mb-3">
@@ -112,7 +111,6 @@ if(loggedIn && paidUser && !hasStripeId) {
           </div>
         </div>
 
-
         <div className="row justify-content-center">
           
           <div className='col-8'>
@@ -137,7 +135,7 @@ if(loggedIn && paidUser && !hasStripeId) {
 
 
     
-  );
+  )
 };
 
 export default Profile;
