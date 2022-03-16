@@ -5,8 +5,7 @@ import { CREATE_BUSINESS,UPLOAD_FILE } from '../../utils/mutations';
 import { QUERY_BUSINESS, QUERY_ME } from '../../utils/queries';
 
 import { Card, Badge, Button, Col, Container } from 'react-bootstrap';
-import * as mdb from 'mdb-ui-kit'; // lib
-import { Input } from 'mdb-ui-kit'; // module
+
 
 const MyBusinessForm = () => {
   const [formState, setFormState] = useState({
