@@ -128,74 +128,74 @@ const MyBusinessForm = () => {
                         </div>
 
                         {/*  CHOSE BUSINESS TYPE  */}
-                        <div className=" row my-3 mx-3 ">
-                          <h4 className="mt-3"> Please select an option that applies to your business</h4> 
+                        <h4 className="mt-3"> Please select an option that applies to your business</h4> 
+                       <div className="col-sm-3">
+                         <label htmlFor="womenOwned">Women Owned</label>
+                  <select
+                          className="form-select "
+                          name="womenOwned"
+                          id="womenOwned"
+                          onChange={handleChange}
+                          value={formState.womenOwned}
+                          defaultValue={true}
+                        >
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                        </select>  
+                      </div>
 
-                            <div className="col-sm-3">
-                              <label htmlFor="womenOwned">Women Owned</label>
+                      <div className="col-sm-3">
+                        <label htmlFor="blackOwned">Black Owned	</label>
                         <select
-                                className="form-select "
-                                name="womenOwned"
-                                id="womenOwned"
-                                onChange={handleChange}
-                                value={formState.womenOwned}
-                                defaultValue={true}
-                              >
-                              <option value={true}>Yes</option>
-                              <option value={false}>No</option>
-                              </select>  
-                            </div>
-                            
-                            <div className="col-sm-3">
-                              <label htmlFor="blackOwned">Black Owned	</label>
-                              <select
-                                className="form-select"
-                                name="blackOwned"
-                                id="blackOwned"
-                                onChange={handleChange}
-                                value={formState.blackOwned}
-                                defaultValue={true}
-                              >
-                              <option value={true}>Yes</option>
-                              <option value={false}>No</option>
-                              </select>
-                            </div>
-                            <div className="col-sm-3">
-                            <label htmlFor="momAndDad">
-                              Family Owned
-                            </label>            
-                              <select
-                                className="form-select"
-                                name="momAndDad"
-                                id="momAndDad"
-                                onChange={handleChange}
-                                value={formState.momAndDad}
-                                defaultValue={true}
-                              >
-                                <option value={true}>Yes</option>
-                                <option value={false}>No</option>
-                              </select>
-                            </div>
-                            <div className="col-sm-3">
-                            <label htmlFor="closing">
-                              Closing Soon
-                            </label>
-                              <select
-                                className="form-select"
-                                name="closing"
-                                id="closing"
-                                onChange={handleChange}
-                                value={formState.closing}
-                                defaultValue={true}
-                              >
-                                <option value={true}>Yes</option>
-                                <option value={false}>No</option>
-                              </select>
-                            
-                            </div>
-                          </div>
+                          className="form-select"
+                          name="blackOwned"
+                          id="blackOwned"
+                          onChange={handleChange}
+                          value={formState.blackOwned}
+                          defaultValue={true}
+                        >
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                        </select>
+                      </div>
+                      <div className="col-sm-3">
+                      <label htmlFor="momAndDad">
+                        Family Owned
+                      </label>            
+                        <select
+                          className="form-select"
+                          name="momAndDad"
+                          id="momAndDad"
+                          onChange={handleChange}
+                          value={formState.momAndDad}
+                          defaultValue={true}
+                        >
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </div>
+                      <div className="col-sm-3">
+                      <label htmlFor="closing">
+                        Closing Soon
+                      </label>
+                        <select
+                          className="form-select"
+                          name="closing"
+                          id="closing"
+                          onChange={handleChange}
+                          value={formState.closing}
+                          defaultValue={true}
+                        >
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
 
-
+                      </div>
+                    </div>
+                    <div>
+                      <h1>Upload A image</h1>
+                      <input id='image'  type="file" onChange={handleFileChange}></input>
+                    </div> 
 
                         {/*  BUSINESS DESCRIPTION */}
                         <div class=" row mb-3 mx-4 ">
@@ -211,12 +211,6 @@ const MyBusinessForm = () => {
                             onChange={handleChange}
                           />
                         </div>
-
-
-                        <div class=" row mb-3 mx-4 ">
-                      <h4>Upload A image</h4>
-                      <input  class="form-control" id='image'  type="file" onChange={handleFileChange}></input>
-                    </div> 
 
                         <button className="btn btn-primary w-50" type="submit">
                           Submit

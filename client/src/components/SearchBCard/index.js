@@ -92,7 +92,6 @@ return (
                         </OverlayTrigger>
                     </Col>
                     <Col>
-                    
                         {/* <a href={data.link} target="_blank" /> 
 //                         <a href={data.links} target="_blank" rel="noopener noreferrer">
 //                         <Button style={buttons} className="mb-1" variant="success">WEBSITE 2</Button>
