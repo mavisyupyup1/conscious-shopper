@@ -49,7 +49,10 @@ var Top5Card = function ({ data, setOrdered, images }) {
         </Card> */}
 
         <Card className=" shadow-sm bg-white rounded mt-2">
-            <Card.Img variant="top" src={`/images/${data.image}`} />
+          <div style={{ height: "200px"}} >
+            <Card.Img style={{ maxHeight: 200, objectFit: "cover"}} variant="top" src={`/images/${data.image}`} />
+          </div>
+            
                 <Card.Body className="d-flex flex-column">
                     <div className="d-flex flex-column mb-2 justify-content-evenly">
                       <Card.Title className="text-center font-weight-bold">{data.title}</Card.Title>
