@@ -24,18 +24,18 @@ const NavbarMain = () => {
                     <Nav>
                     {Auth.loggedIn()?(
                         <>
-                        <Nav.Link href="/search">MainSearch</Nav.Link>
-                        <Nav.Link href="/bpage">Business Page</Nav.Link>
-                        <a className="btn btn-block btn-outline-danger" href ='/' onClick={logout}>
-                        Logout
-                        </a>
+                        <Button variant="outline-secondary" className="me-2">
+                            <Nav.Link href="/bpage">Business Page</Nav.Link>
+                        </Button>
+                        <Button variant="outline-danger" className="me-2">
+                            <Nav.Link href ='/' onClick={logout}>Logout</Nav.Link>
+                        </Button>
                         </>
                     ) : (
                         <>
                         <Button variant="outline-secondary" className="me-2">
                             <Nav.Link href="/login">Login</Nav.Link>
                         </Button>
-                        
                         <Button variant="outline-secondary">
                             <Nav.Link href="/signup">Signup</Nav.Link>
                         </Button>

@@ -1,7 +1,7 @@
 {
-  "name": "deep-thoughts",
+  "name": "concious-shopper",
   "version": "1.0.0",
-  "description": "",
+  "description": "An app for the discerning shopper",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mavisyupyup1/deep-thoughts.git"
+    "url": "git+https://github.com/mavisyupyup1/project-3-group-d.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mavisyupyup1/deep-thoughts/issues"
+    "url": "https://github.com/mavisyupyup1/project-3-group-d/issues"
   },
-  "homepage": "https://github.com/mavisyupyup1/deep-thoughts#readme",
+  "homepage": "https://github.com/mavisyupyup1/project-3-group-d#readme",
   "devDependencies": {
     "concurrently": "^7.0.0"
   },

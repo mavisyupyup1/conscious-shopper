@@ -52,9 +52,37 @@ const resolvers = {
         .populate('thoughts')
         .populate('votes');
     },
+    votes: async() => {
+      return Vote.find()
+      .select('__v')
+      .populate('business')
+    },
     vote: async(parent, { _id }) => {
       return Vote.findOne({ _id })
         .select('-__v')
+    },
+    feed: async(parent, args) => {
+      switch(args.filter){
+        case 'blackOwned': 
+          var show = {blackOwned: true}
+          break;
+        case 'womenOwned':
+          var show = {womenOwned: true}
+          break;
+        case 'closing':
+          var show = {closing: true}
+          break;
+        case 'momAndDad':
+          var show = {momAndDad: true}
+          break;
+        default:
+          var show = {}
+          break;
+      }
+      
+      const results = await Business.find(show)
+
+      return results;
     }
   },
 

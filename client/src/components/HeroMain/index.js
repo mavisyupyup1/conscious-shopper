@@ -1,9 +1,9 @@
 import React,{useState} from "react";
+import { Link } from 'react-router-dom';
 
-import { Carousel, Container, Row, Form, FloatingLabel, Overlay } from 'react-bootstrap';
+import { Carousel, Container, Row, Form, FloatingLabel, Overlay, Button, Nav } from 'react-bootstrap';
 import shopimage from '../../assets/images/shop1.jpeg'
-import { useQuery } from "@apollo/client";
-import {QUERY_BUSINESS} from "../../utils/queries"
+
 
 const HeroMain = () => {
 const [searchState,setSearchState] = useState({
@@ -41,6 +41,9 @@ console.log("Clicked")
                     name="searchCity" 
                  placeholder="search" className="shadow p-3 mb-5 bg-body rounded" value={searchState.searchCity} onChange={handleChange}/>
                     <button type='submit' onClick={handleSearch}>search</button>
+                        <Button variant="outline-info" className="me-2">
+                            <Nav.Link href="/search">MainSearch</Nav.Link>
+                        </Button>
                 </FloatingLabel>
                 
                 <h3>You are one step away from finding the right business</h3>

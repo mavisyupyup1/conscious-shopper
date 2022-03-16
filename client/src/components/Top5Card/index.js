@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Card, Badge, Button, Col } from 'react-bootstrap';
 
-var Top5Card = function ({ data, setOrdered }) {
+var Top5Card = function ({ data, setOrdered, images }) {
 
   return (
 
@@ -31,15 +31,15 @@ var Top5Card = function ({ data, setOrdered }) {
         </Card> */}
 
         <Card className=" shadow-sm bg-white rounded mt-2">
-            <Card.Img variant="top" src={data.image} />
+            <Card.Img variant="top" src={images.slice(0, 1)} />
                 <Card.Body className="d-flex flex-column">
                     <div className="d-flex mb-2 justify-content-between">
-                    <Card.Title className="mb-0 font-weight-bold">{data.name}</Card.Title>
+                    <Card.Title className="mb-0 font-weight-bold">{data.title}</Card.Title>
                     <Badge pill className="mb-1" variant="warning">
-                    🔴 {data.type}
+                    🔴 {data.womenOwned}
                     </Badge>
                     </div>
-                    <Card.Text className="text-secondary">{data.desc}</Card.Text>
+                    <Card.Text className="text-secondary">{data.description}</Card.Text>
                     <Button
                     onClick={(e) =>{
                       e.preventDefault()

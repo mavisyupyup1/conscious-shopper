@@ -302,3 +302,30 @@ export const QUERY_VOTE = gql`
     }
   }
 `;
+
+export const QUERY_FEED = gql`
+  query($filter: String){
+    feed(filter: $filter){
+      _id
+      title
+      createdAt
+      location
+      links
+      phone 
+      description
+      userId
+      image
+      blackOwned
+      womenOwned
+      closing
+      momAndDad
+      voteCount
+      votes {
+        _id
+        voteType
+        userId
+        businessId
+      }
+    }
+  }
+`

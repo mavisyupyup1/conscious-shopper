@@ -59,8 +59,8 @@ const typeDefs = gql`
   type Vote {
     _id: ID
     voteType: String
-    userId: ID!
-    businessId: ID!
+    userId: ID
+    businessId: ID
   }
 
   type Auth {
@@ -76,9 +76,11 @@ const typeDefs = gql`
     thought(_id: ID!): Thought
     allBusiness: [Business] 
     business(_id: ID!): Business
+    votes: [Vote]
     vote(_id: ID!): Vote
     stripeId: String
     type: String
+    feed(filter: String): [Business]
   }
 
   type Mutation {

@@ -4,7 +4,6 @@ const voteSchema = new Schema(
     {
         voteType: {
             type: String,
-            enum: ['upVote', 'downVote'],
             default: 'upVote'
         },
         userId: {
