@@ -17,6 +17,7 @@ const MyBusinessForm = () => {
     womenOwned: ' ',
     closing: ' ',
     momAndDad: ' ',
+
   });
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
   const [uploadFile] = useMutation(UPLOAD_FILE, {
@@ -48,18 +49,18 @@ const MyBusinessForm = () => {
     }
   };
   const handleFileChange = e => {
+    e.preventDefault();
     const file = e.target.files[0];
     console.log(file);
     const fileName = file.name
-    // setFormState({
-    //    ...formState,
-    //   image: fileName
-    // });
-    console.log(fileName)
+    setFormState({
+      ...formState,
+      ["image"]: fileName
+    });
     if (!file) return
     uploadFile({ variables: { file } })
-    
   }
+
   return (
 <Container>
       <div className=" m-4 card border border-dark border-5 rounded " style={{width: "45rem"}}>
@@ -193,6 +194,7 @@ const MyBusinessForm = () => {
                             
                             </div>
                           </div>
+
 
 
                         {/*  BUSINESS DESCRIPTION */}

@@ -93,12 +93,14 @@ return (
                     </Col>
                     <Col>
                     
-                        {/* <a href={data.link} target="_blank" /> */}
-                        <a href={data.links} target="_blank" rel="noopener noreferrer">
-                        <Button style={buttons} className="mb-1" variant="success">WEBSITE 2</Button>
-                        </a>
+                        {/* <a href={data.link} target="_blank" /> 
+//                         <a href={data.links} target="_blank" rel="noopener noreferrer">
+//                         <Button style={buttons} className="mb-1" variant="success">WEBSITE 2</Button>
+//                         </a>*/}
                         
                         {/* <Button style={buttons} className="mb-1"><a href={data.links} target="_blank" rel="noopener noreferrer">Website 🖥 </a></Button> */}
+                        {data.links ? ( <><Button style={buttons} className="p-1"><a href={data.links[0]} target="_blank" rel="noopener noreferrer">Go to Website</a>🖥</Button> </>) : (" ")}
+
                     </Col>
                     <Col>
                         {/* <Button className='m-0'>WEBSITE 🖥</Button> */}
