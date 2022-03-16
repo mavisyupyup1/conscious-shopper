@@ -49,7 +49,7 @@ return (
                   <label htmlFor="blackOwned">Black Owned</label>
                 </div>
                 <div>
-                  <input type="radio" id="womenOwned" name="filterValue" vlaue="womenOwned" className="m-1" onFocus={() => {setFormState("womenOwned")}} />
+                  <input type="radio" id="womenOwned" name="filterValue" value="womenOwned" className="m-1" onFocus={() => {setFormState("womenOwned")}} />
                   <label htmlFor="womenOwned">Women Owned</label>
                 </div>
                 <div>
