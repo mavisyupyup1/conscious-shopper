@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const FriendList = ({ friendCount, username, friends }) => {
   if (!friends || !friends.length) {
     return <div style={{width: "45rem"}}>
-      <p className="m-3">{username}, make some friends!</p>;
+      <p className="m-3">{username}, no shop saved!</p>
       </div> 
   }
 

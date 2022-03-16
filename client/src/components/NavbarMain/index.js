@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth'
-import { useQuery } from '@apollo/client';
 
-import { QUERY_BUSINESS,QUERY_ME_BASIC } from '../../utils/queries'
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
+import { useQuery , useMutation} from '@apollo/client';
+import { QUERY_ME_BASIC} from '../../utils/queries';
 
 import './navbarmain.css'
 
@@ -13,7 +12,18 @@ const logout = event => {
     Auth.logout();
 }
 
+
 const NavbarMain = () => {
+    // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    //     variables: { username: userParam },
+    //   });
+      const { data: userData } = useQuery(QUERY_ME_BASIC);
+    const loggedIn = Auth.loggedIn();
+  const paidUser = userData?.me.type === "PAID"
+  const hasStripeId = userData?.me.stripeId !== null
+  console.log("stripeId:", userData?.me.stripeId)
+  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
+
        return (
         
         <Navbar className='navbarcolor' expand="lg">
@@ -26,21 +36,27 @@ const NavbarMain = () => {
                     <Nav>
                     {Auth.loggedIn()?(
                         <>
-                        <Nav.Link href="/search">MainSearch</Nav.Link>
-                        <Nav.Link href="/bpage">Business Page</Nav.Link>
-                            <>
-                        <Nav.Link href="/profile">My Profile</Nav.Link>    
-                            </>
-                        <a className="btn btn-block btn-outline-danger" href ='/' onClick={logout}>
-                        Logout
-                        </a>
+                        <Button variant="outline-secondary" className="me-2">
+                            <Nav.Link href="/profile">My Profile</Nav.Link>
+                        </Button>
+                        {loggedIn && paidUser && hasStripeId?(<><div className="row justify-content-center">
+        <div className='col-9'>
+        <Button variant="outline-secondary" className="me-2">
+                            <Nav.Link href="/bpage">Business Page</Nav.Link>
+                        </Button>
+        </div>      
+      </div></>
+      ):null}
+                       
+                        <Button variant="outline-danger" className="me-2">
+                            <Nav.Link href ='/' onClick={logout}>Logout</Nav.Link>
+                        </Button>
                         </>
                     ) : (
                         <>
                         <Button variant="outline-secondary" className="me-2">
                             <Nav.Link href="/login">Login</Nav.Link>
                         </Button>
-                        
                         <Button variant="outline-secondary">
                             <Nav.Link href="/signup">Signup</Nav.Link>
                         </Button>

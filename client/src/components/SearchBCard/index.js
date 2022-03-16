@@ -43,7 +43,8 @@ return (
 
             <Col xs={3} className='border border-dark border-2 p-0'> 
                 {/* <img src={data.image} style={imgcard}></img> */}
-                <Image fluid src={data.image}></Image>
+                <Image fluid  alt={data.name}
+          src={`/images/${data.image}`}></Image>
             </Col>
             <Col xs={9} className=''>
                 <Row>

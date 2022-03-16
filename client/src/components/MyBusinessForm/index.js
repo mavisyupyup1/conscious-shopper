@@ -42,7 +42,7 @@ const MyBusinessForm = () => {
       });
       // clear form value
       setFormState('');
-
+document.location.replace('/bpage')
     } catch (e) {
       console.error(e);
     }
@@ -51,6 +51,10 @@ const MyBusinessForm = () => {
     const file = e.target.files[0]
     console.log(file.name)
     const fileName = file.name
+    setFormState({
+      ...formState,
+      image: fileName
+    });
     console.log(fileName)
     if (!file) return
     uploadFile({ variables: { file } })
@@ -120,10 +124,10 @@ const MyBusinessForm = () => {
                             onChange={handleChange}
                           />
                         </div>
-                        <div class=" row my-3 mx-3 ">
+                        <div className=" row my-3 mx-3 ">
 
-             <h4 class="mt-3"> Please select an option that applies to your business</h4> 
-               <div class="col-sm-3">
+             <h4 className="mt-3"> Please select an option that applies to your business</h4> 
+               <div className="col-sm-3">
                  <label htmlFor="blackOwned">Women Owned</label>
           <select
                   className="form-select "
@@ -138,7 +142,7 @@ const MyBusinessForm = () => {
                 </select>  
               </div>
               
-              <div class="col-sm-3">
+              <div className="col-sm-3">
                 <label htmlFor="blackOwned">Black Owned	</label>
                 <select
                   className="form-select"
@@ -152,7 +156,7 @@ const MyBusinessForm = () => {
 								<option value={false}>No</option>
                 </select>
               </div>
-              <div class="col-sm-3">
+              <div className="col-sm-3">
               <label htmlFor="momAndDad">
                 Family Owned
               </label>            
@@ -168,7 +172,7 @@ const MyBusinessForm = () => {
                   <option value={false}>No</option>
                 </select>
               </div>
-              <div class="col-sm-3">
+              <div className="col-sm-3">
               <label htmlFor="closing">
                 Closing Soon
               </label>
@@ -186,6 +190,11 @@ const MyBusinessForm = () => {
               
               </div>
             </div>
+            <div>
+                      <h1>Upload A image</h1>
+                      <input id='image'  type="file" onChange={handleFileChange}></input>
+                    </div> 
+
 
                         <label className="my-3 mx-3" htmlFor="description">Description </label>
                         <textarea
@@ -202,10 +211,7 @@ const MyBusinessForm = () => {
                           Submit
                         </button>
                       </form>
-                      <div>
-                      <h1>Upload A image</h1>
-                      <input type="file" onChange={handleFileChange}></input>
-                    </div>  
+                       
                     </div>
                     </div>
     </div>

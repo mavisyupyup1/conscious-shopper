@@ -33,7 +33,7 @@ const SplitForm = () => {
         await addStripe({
           variables: { stripeId },
         })
-
+document.location.replace('/profile')
       }
       catch (err) {
         console.error(err)

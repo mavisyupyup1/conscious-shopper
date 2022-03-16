@@ -39,9 +39,9 @@ const Profile = (props) => {
   }
 
   // redirect to personal profile page if username is yours
-  if (loggedIn  && paidUser && hasStripeId) {
-    return <Redirect to="/profile" />;
-  }
+  // if (loggedIn  && paidUser && hasStripeId) {
+  //   return <Redirect to="/profile" />;
+  // }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -59,8 +59,7 @@ const Profile = (props) => {
 
   return (
 
-    <Container>
-
+    <Container>   
     <div>
 
       {/*  VIEWING USER PROFILE - ROW*/}
@@ -76,11 +75,11 @@ const Profile = (props) => {
       </div>
       
       {/*  BUSINESS FORM - ROW */}
-      {loggedIn && paidUser && hasStripeId?(<div className="row justify-content-center">
+      {loggedIn && paidUser && hasStripeId?(<><div className="row justify-content-center">
         <div className='col-9'>
         <MyBusinessForm/>
         </div>      
-      </div>
+      </div></>
       ):null}
       
       {/* THOUGHT LIST  */}
@@ -99,7 +98,7 @@ const Profile = (props) => {
       <div className="row justify-content-center">
 
         <div className='col-8'>
-          <div class=" border border-dark border-5 rounded " style={{width: "45rem"}}>
+          <div className=" border border-dark border-5 rounded " style={{width: "45rem"}}>
             <FriendList
               username={user.username}
               friendCount={user.friendCount}
@@ -111,17 +110,17 @@ const Profile = (props) => {
           </div>
         </div>
 
-        <div className="row justify-content-center">
+        {/* <div className="row justify-content-center">
           
           <div className='col-8'>
-            <div class=" border border-dark border-5 rounded " style={{width: "45rem"}}>
+            <div className=" border border-dark border-5 rounded " style={{width: "45rem"}}>
               <div className="m-3">
                 {!userParam&&<ThoughtForm/>}
               </div>
             </div>
           </div>
         </div>
-        
+         */}
 
       
 
