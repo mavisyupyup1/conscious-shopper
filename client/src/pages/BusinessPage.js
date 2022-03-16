@@ -19,7 +19,7 @@ console.log(data)
     console.log(data?.business)
     const [thoughtText, setText] = useState('');
     const [addThought] = useMutation(ADD_THOUGHT,{refetchQueries:[QUERY_BUSINESS]})
-    console.log(data?.business.thoughts[0]._id)
+   
   
     const { data:userData } = useQuery(QUERY_ME_BASIC);
    

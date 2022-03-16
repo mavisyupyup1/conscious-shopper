@@ -302,3 +302,4 @@ export const QUERY_VOTE = gql`
     }
   }
 `;
+
