@@ -77,9 +77,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="h-100">
+        
           <NavbarMain />
-          <div className="">
+      
             <Switch>
               <Route exact path="/" component={HomeMain} />
               <Route exact path="/search" component={MainSearch} />
@@ -96,9 +96,9 @@ function App() {
               <Route exact path="/thought/:id" component={SingleThought} />
               <Route component={NoMatch} />
             </Switch>
-          </div>
+          
           <Footer />
-        </div>
+       
       </Router>
     </ApolloProvider>
   );

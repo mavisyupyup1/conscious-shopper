@@ -94,7 +94,7 @@ const Signup = () => {
       </div>
     </main> */}
 
-    <Container className="h-100">
+    <Container className='h-100'>
       <Row className="justify-content-md-center">
         <Col xs="6">
           <Form onSubmit={handleFormSubmit} className="p-2 m-1 border border-dark border-5 rounded">

@@ -18,15 +18,17 @@
   box-sizing: border-box;
 } */
 
-:root {
-  height: max-content;
-}
+#root {
+  height: 100%;
+} 
 
-/* html,
+
+
+html,
 body {
-  height: max-content;
-  background-color: #C7F9CC;
-} */
+  height: 100%;
+  background-color: #ffffff;
+} 
 
 
 
