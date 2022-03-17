@@ -191,7 +191,7 @@ const MyBusinessForm = () => {
                         </select>
 
                       </div>
-                    </div>
+                    
                     <div>
                       <h1>Upload A image</h1>
                       <input id='image'  type="file" onChange={handleFileChange}></input>

@@ -75,4 +75,5 @@ Each person contributed concepts and code throughout the development process. Ex
 Group-D would like to thank our instructional team at Columbia Engineering Full-Stack Coding Bootcamp for their enduring support!
 
 ### Want to Help?
+
 Do you see something we missed or a more succint and effective way this code can be written? Great! Please reach out to any of the contributors and let us know how we can improve. Thanks in advance for your tips, tricks, and pointers!
