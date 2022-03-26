@@ -1,5 +1,6 @@
 import React from 'react';
 import Auth from '../../utils/auth'
+import {Link} from 'react-router-dom'
 
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import { useQuery , useMutation} from '@apollo/client';
@@ -28,9 +29,19 @@ const NavbarMain = () => {
         
         <Navbar className='navbarcolor' expand="lg">
             <Container>
-                <Navbar.Brand href="/">
+
+
+                {/* <Navbar.Brand href="/">
                 <h1>Conscious Shopper</h1>
-                </Navbar.Brand>
+                <i className="fab fa-typo3"></i>
+                </Navbar.Brand> */}
+
+                {/* NAVBAR CONCIOUS SHOPPER LOGO */}
+                <Link to="/" className="navbar-logo" >
+                Concious Shopper <i class="fa-solid fa-basket-shopping"></i>
+                </Link>
+
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                     <Nav>
