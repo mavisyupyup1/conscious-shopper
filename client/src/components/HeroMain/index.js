@@ -37,18 +37,18 @@ console.log("Clicked")
                 src={shopimage}
                 alt="First slide"
                 />
-                <Carousel.Caption>
-                <FloatingLabel controlId="floatingInput" label="Search a CITY to shop conscious!" className="search-input mb-3">
-                    <Form.Control type="searchCity"
-                    name="searchCity" 
-                    placeholder="search" className="shadow p-3 mb-5 bg-body rounded" value={searchState.searchCity} onChange={handleChange}/>
-                    {/* <Button variant="primary" className="button-search" type='submit' onClick={handleSearch}>Search!</Button> */}
-                    <Button variant="primary" className="button-search">
-                        <Nav.Link href="/search">MainSearch</Nav.Link>
-                    </Button>
-                </FloatingLabel>
+                <Carousel.Caption className="mobile-caption">
+                    <FloatingLabel controlId="floatingInput" label="Search a CITY to shop conscious!" className="search-inputtext mb-3">
+                        <Form.Control type="searchCity"
+                        name="searchCity" 
+                        placeholder="search" className="shadow p-3 bg-body rounded mainsearch-input" value={searchState.searchCity} onChange={handleChange}/>
+                        {/* <Button variant="primary" className="button-search" type='submit' onClick={handleSearch}>Search!</Button> */}
+                        <button className="btn--outline">
+                            <Nav.Link href="/search" className="mainsearch-link">MainSearch</Nav.Link>
+                        </button>
+                    </FloatingLabel>
                 
-                <h3 className="herotext">You are one step away from finding the right business</h3>
+                    <h3 className="herotext">You are one step away from finding the right business</h3>
                 </Carousel.Caption>
             </Carousel.Item>
             
