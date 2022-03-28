@@ -1,0 +1,13 @@
+@media screen and (max-width: 960px) {
+
+    .mobile-cardsection {
+        display: grid !important;
+    }
+
+    .mobile-business-card {
+        flex-basis: auto !important;
+        width: 100% !important;
+    }
+
+
+}

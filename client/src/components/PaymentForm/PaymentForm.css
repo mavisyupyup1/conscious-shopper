@@ -1,0 +1,9 @@
+.payment-btn {
+    background-color: #38A3A5;
+    border-radius: 25px;
+    color: #fff;
+    padding: 8px 20px;
+    border: 1px solid white;
+    transition: all 0.3s ease-out;
+    
+}

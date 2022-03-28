@@ -4,6 +4,7 @@ import { useMutation, gql } from '@apollo/client';
 import { CREATE_BUSINESS, UPLOAD_FILE } from '../../utils/mutations';
 import { QUERY_BUSINESS, QUERY_ME } from '../../utils/queries';
 import { Card, Badge, Button, Col, Container } from 'react-bootstrap';
+import './MyBusinessForm.css'
 
 const MyBusinessForm = () => {
   const [formState, setFormState] = useState({
@@ -62,8 +63,8 @@ const MyBusinessForm = () => {
   }
 
   return (
-<Container>
-      <div className=" m-4 card border border-dark border-5 rounded " style={{width: "45rem"}}>
+<Container className='col-9 mobile-b-form'>
+      <div className="mobile-business-from m-4 card border border-dark border-5 rounded " style={{width: ""}}>
           <div className="card-header ">       
                       <h3 className={`m-0 ${error ? "text-error" : ""}`}>
                      
