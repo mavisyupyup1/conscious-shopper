@@ -4,6 +4,8 @@ import { ADD_USER } from '../utils/mutations';
 
 import { Card, Badge, Button, Col, Container, Form, Row } from 'react-bootstrap';
 
+import './Signup.css'
+
 import Auth from '../utils/auth';
 
 const Signup = () => {
@@ -96,7 +98,7 @@ const Signup = () => {
 
     <Container className='h-100'>
       <Row className="justify-content-md-center">
-        <Col xs="6">
+        <Col xs="6" className='mobile-signup'>
           <Form onSubmit={handleFormSubmit} className="p-2 m-1 border border-dark border-5 rounded">
 
             <Form.Group className="mb-3" controlId="username">

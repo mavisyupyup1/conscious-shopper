@@ -7,6 +7,7 @@ import Auth from '../utils/auth';
 import { Redirect } from 'react-router-dom';
 import staticData from '../businessData.json';
 import { QUERY_ALL_BUSINESS, QUERY_BUSINESS, QUERY_ME_BASIC } from '../utils/queries';
+import './HomeMain.css'
 
 const HomeMain = () => {
   //const { loading, data } = useQuery(QUERY_BUSINESS);
@@ -46,9 +47,9 @@ const { loading, data } = useQuery(QUERY_ALL_BUSINESS)
                 <HeroMain/>
             </Col>
         </Row>
-        <Row>
+        <Row className='mobile-cardsection'>
         {results.map(data => (
-          <Col xs={3} className="mb-5" key={`${data._id}`}>
+          <Col className="mobile-business-card col-3 mb-5" key={`${data._id}`}>
 
             <Top5Card data={data} images={images} setOrdered={true} />
             
