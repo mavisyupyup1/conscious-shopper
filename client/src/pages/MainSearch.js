@@ -16,13 +16,14 @@ const MainSearch = () => {
 
   // use the useEffect hook to update each time data is changed or reloading on page
   useEffect(() => {
+    // if searched by location run this set of state updates
     if(searchParam == "location"){
       idbPromise('location', 'get').then(locations => {
         dispatch({
           type: UPDATE_LOCATION,
           location: locations[0]
         })
-        
+
         idbPromise('business', 'get').then(businesses => {
           const filteredBusiness = businesses.filter(data => {
             return (data.location.indexOf(locations[0]) > -1)

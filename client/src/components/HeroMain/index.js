@@ -11,9 +11,12 @@ import '../HeroMain/heromain.css'
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 const HeroMain = () => {
+    // import state and dispatch from global state
     const [state, dispatch] = useStoreContext();
     const { location } = state;
-
+    
+    // on change get the value of the button and the event and update the location state
+    /* Future update to add title as search parameter as well */
     const handleChange = (event)=>{
         const { name, value } = event.target;
         dispatch({
@@ -22,6 +25,7 @@ const HeroMain = () => {
         })
     }
 
+    // when search is submitted change the window loaction to search page with a parameter of location, and store global state for location in idb
     const handleSearch = async event  =>{
         event.preventDefault();
 
@@ -47,7 +51,7 @@ const HeroMain = () => {
                             {/*<FloatingLabel controlId="floatingInput" label="Search a CITY to shop conscious!" className="search-input"></FloatingLabel>-->*/}
                             <FormControl  
                                 aria-label="searchCity" 
-                                placeholder="New York" 
+                                placeholder="NY" 
                                 name="location" 
                                 onChange={handleChange} 
                             />

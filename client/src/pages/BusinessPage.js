@@ -103,6 +103,7 @@ const BusinessPage = () => {
         return <Redirect to="/bpage" />
     }*/
 
+    // function to save and update votes, possibly can be updated to rely on useffect and state with more time
     const handleSaveVote = async(voteType, businessId) => {
        const userId = Auth.getProfile().data._id
        const matches = business.votes.filter(userVotes => {
@@ -162,9 +163,7 @@ const BusinessPage = () => {
                             <Row>
                                 <h4>Address:  {data.location}</h4>
                                 <h4>Phone Number:  {data.phone}</h4>
-                                {/* <Link to={{pathname: `${data.links[0]}`}}>asdas
-                                </Link> */}
-                                <h4>Website:{data.links ? ( <><Link className="btn btn-primary" to={`${data.links[0]}`} target="_blank">Website</Link> </>):("")}</h4>
+                                <h4>Website:{data.links ? ( <><Link className="btn btn-primary" to={{ pathname: `${data.links[0]}` }} target="_blank">Website</Link> </>):("")}</h4>
                                 <h4>VoteCount: {data.voteCount}</h4> 
                                 {Auth.loggedIn() ? (
                                 <Col className="d-flex" >

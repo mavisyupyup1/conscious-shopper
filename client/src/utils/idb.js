@@ -34,6 +34,7 @@ export function idbPromise(storeName, method, object, key) {
                 console.log('error', e);
             };
 
+            // method that specifies what to change or retrieve with commands for the idb promise
             switch(method){
                 case 'put':
                     store.put(object, key);

@@ -95,7 +95,7 @@ return (
 //                         </a>*/}
                         
                         {/* <Button style={buttons} className="mb-1"><a href={data.links} target="_blank" rel="noopener noreferrer">Website 🖥 </a></Button> */}
-                        {data.links ? ( <><Button style={buttons} className="p-1"><a href={data.links[0]} target="_blank" rel="noopener noreferrer">Go to Website</a>🖥</Button> </>) : (" ")}
+                        {data.links ? ( <><Button style={buttons} className="p-1"><Link to={{ pathname: `${data.links[0]}`}} target="_blank" rel="noopener noreferrer">Go to Website</Link>🖥</Button> </>) : (" ")}
 
                     </Col>
                     <Col>
