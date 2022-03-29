@@ -13,7 +13,6 @@ const logout = event => {
     Auth.logout();
 }
 
-
 const NavbarMain = () => {
     // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     //     variables: { username: userParam },
@@ -23,14 +22,11 @@ const NavbarMain = () => {
     const loggedIn = Auth.loggedIn();
     const paidUser = userData?.me.type === "PAID"
     const hasStripeId = userData?.me.stripeId !== null
-    console.log("stripeId:", userData?.me.stripeId)
-    console.log("Current user:", {loggedIn, paidUser, hasStripeId})
 
     return (
+  
 
         <>
-        
-        
         
         <Navbar className='navbarcolor' expand="lg">
             <Container>
@@ -38,7 +34,7 @@ const NavbarMain = () => {
 
                 <Navbar.Brand href="/">
                     <div className="navbar-logo">
-                    Conscious Shopper <i class="fa-solid fa-basket-shopping"></i>
+                    Conscious Shopper <i className="fa-solid fa-basket-shopping"></i>
                     </div>
                 </Navbar.Brand> 
 
