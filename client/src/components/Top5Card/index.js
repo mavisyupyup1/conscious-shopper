@@ -58,7 +58,7 @@ var Top5Card = function ({ data, setOrdered, images }) {
                       <Card.Title className="text-center font-weight-bold">{data.title}</Card.Title>
                       <div className="d-flex flex-wrap">
                         {pill().map(element => (
-                        <Badge pill className="m-2 p-2" variant="warning">
+                        <Badge pill className="m-2 p-2" variant="warning" key={element}>
                         🔴 {element}
                         </Badge>
                         )

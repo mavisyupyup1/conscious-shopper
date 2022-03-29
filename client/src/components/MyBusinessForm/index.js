@@ -72,6 +72,7 @@ const MyBusinessForm = () => {
                           <span className="ml-2">Something went wrong...</span>
                         )}
                       </h3>
+                      </div>
                       <div className="cardbody">
                       <form
                         // className="flex-row justify-center justify-space-between-md align-stretch"
@@ -131,7 +132,7 @@ const MyBusinessForm = () => {
                         <h4 className="mt-3"> Please select an option that applies to your business</h4> 
                        <div className="col-sm-3">
                          <label htmlFor="womenOwned">Women Owned</label>
-                  <select
+                        <select
                           className="form-select "
                           name="womenOwned"
                           id="womenOwned"
@@ -189,9 +190,7 @@ const MyBusinessForm = () => {
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
                         </select>
-
                       </div>
-                    </div>
                     <div>
                       <h1>Upload A image</h1>
                       <input id='image'  type="file" onChange={handleFileChange}></input>
@@ -215,10 +214,9 @@ const MyBusinessForm = () => {
                         <button className="btn btn-primary w-50" type="submit">
                           Submit
                         </button>
-                      </form>
-                       
-                    </div>
-                    </div>
+                    </form>
+                  </div>
+                      
     </div>
 	</Container>
   ); 

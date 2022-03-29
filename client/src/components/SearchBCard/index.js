@@ -1,6 +1,4 @@
 import React from 'react';
-import Overlayphonebtn from '../Overlayphonebtn';
-
 import { Container, Row, Col, Button, Image, Popover, OverlayTrigger} from 'react-bootstrap';
 
 import { Link } from 'react-router-dom'
@@ -20,7 +18,6 @@ const SearchBCard = ({ data }) => {
           </Popover.Body>
         </Popover>
     );
-console.log(data.links)
     const popover2 = (
         <Popover  bsPrefix="flex bg-white border border-primary "id="popover-basic">
           <Popover.Header as="h3">Come Visit!</Popover.Header>
