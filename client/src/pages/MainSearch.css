@@ -1,0 +1,24 @@
+@media screen and (max-width: 960px) {
+
+    .mobile-search-page {
+        display: flex;
+        flex-direction: column-reverse;
+        
+    }
+    
+    .mobile-filter-box {
+        width: 75% !important;
+        margin-left: 45px;
+    }
+
+    .mobile-bcard-box {
+        width: 85% !important;
+        margin-left: 25px;
+    }
+
+    .mobile-image-div {
+        width: 100% !important;
+    }
+
+
+}

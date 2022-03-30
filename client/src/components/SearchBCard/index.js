@@ -3,6 +3,8 @@ import { Container, Row, Col, Button, Image, Popover, OverlayTrigger} from 'reac
 
 import { Link } from 'react-router-dom'
 
+import './SearchBCard.css'
+
 const imgcard = {
     width: "200px",
     objectFit: "cover"
@@ -61,17 +63,17 @@ return (
     
     <Container>
 
-        <Row className='border border-dark border-5 rounded'>
+        <Row className='mobile-bsearch-card border border-dark border-5 rounded'>
 
-            <Col xs={3} className=' p-0'> 
+            <div className='mobile-image-div col-3 p-0'> 
                 {/* <img src={data.image} style={imgcard}></img> */}
-                <div style={{ height: "200px", width: "205px"}} >
+               
                    <Image style={ imagescard} alt={data.name} src={`/images/${data.image}`}></Image> 
-                </div>
                 
-            </Col>
+                
+            </div>
 
-            <Col xs={9} className=''>
+            <div className='mobile-bcard-body col-9'>
                 <Row>
                     <h3>{data.title}</h3>
                 </Row>
@@ -85,7 +87,7 @@ return (
                         {/* <Overlayphonebtn></Overlayphonebtn> */}
 
                         <OverlayTrigger trigger="click" placement="right" overlay={popover1}>
-                            <Button style={buttons} className="mb-1" variant="success">NUMBER 📞</Button>
+                            <Button style={buttons} className="mb-1" variant="success">Number 📞</Button>
                         </OverlayTrigger>
                     </Col>
                     <Col>
@@ -95,7 +97,7 @@ return (
 //                         </a>*/}
                         
                         {/* <Button style={buttons} className="mb-1"><a href={data.links} target="_blank" rel="noopener noreferrer">Website 🖥 </a></Button> */}
-                        {data.links ? ( <><Button style={buttons} onClick={e => {e.preventDefault(); window.location = `${data.links[0]}`}} className="p-1" target="_blank"> Go to Website🖥</Button> </>) : (" ")}
+                        {data.links ? ( <><Button style={buttons} onClick={e => {e.preventDefault(); window.location = `${data.links[0]}`}} className="" target="_blank"> Website 🖥 </Button> </>) : (" ")}
 
                     </Col>
                     <Col>
@@ -123,7 +125,7 @@ return (
                     
                 </Row>
                 
-            </Col>
+            </div>
             
             
         </Row>
