@@ -4,6 +4,7 @@ import { useMutation, gql } from '@apollo/client';
 import { CREATE_BUSINESS, UPLOAD_FILE } from '../../utils/mutations';
 import { QUERY_BUSINESS, QUERY_ME } from '../../utils/queries';
 import { Card, Badge, Button, Col, Container } from 'react-bootstrap';
+import './MyBusinessForm.css'
 
 const MyBusinessForm = () => {
   const [formState, setFormState] = useState({
@@ -62,8 +63,8 @@ const MyBusinessForm = () => {
   }
 
   return (
-<Container>
-      <div className=" m-4 card border border-dark border-5 rounded " style={{width: "45rem"}}>
+<Container className='col-9 mobile-b-form'>
+      <div className="mobile-business-from m-4 card border border-dark border-5 rounded " style={{width: ""}}>
           <div className="card-header ">       
                       <h3 className={`m-0 ${error ? "text-error" : ""}`}>
                      
@@ -72,6 +73,7 @@ const MyBusinessForm = () => {
                           <span className="ml-2">Something went wrong...</span>
                         )}
                       </h3>
+                      </div>
                       <div className="cardbody">
                       <form
                         // className="flex-row justify-center justify-space-between-md align-stretch"
@@ -131,13 +133,12 @@ const MyBusinessForm = () => {
                         <h4 className="mt-3"> Please select an option that applies to your business</h4> 
                        <div className="col-sm-3">
                          <label htmlFor="womenOwned">Women Owned</label>
-                  <select
+                        <select
                           className="form-select "
                           name="womenOwned"
                           id="womenOwned"
                           onChange={handleChange}
                           value={formState.womenOwned}
-                          defaultValue={true}
                         >
                         <option value={true}>Yes</option>
                         <option value={false}>No</option>
@@ -152,7 +153,6 @@ const MyBusinessForm = () => {
                           id="blackOwned"
                           onChange={handleChange}
                           value={formState.blackOwned}
-                          defaultValue={true}
                         >
                         <option value={true}>Yes</option>
                         <option value={false}>No</option>
@@ -168,7 +168,6 @@ const MyBusinessForm = () => {
                           id="momAndDad"
                           onChange={handleChange}
                           value={formState.momAndDad}
-                          defaultValue={true}
                         >
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
@@ -184,22 +183,19 @@ const MyBusinessForm = () => {
                           id="closing"
                           onChange={handleChange}
                           value={formState.closing}
-                          defaultValue={true}
                         >
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
                         </select>
-
                       </div>
-                    
                     <div>
                       <h1>Upload A image</h1>
                       <input id='image'  type="file" onChange={handleFileChange}></input>
                     </div> 
 
                         {/*  BUSINESS DESCRIPTION */}
-                        <div class=" row mb-3 mx-4 ">
-                          <h4 class="mt-1"> Tell us about to your business</h4> 
+                        <div className=" row mb-3 mx-4 ">
+                          <h4 className="mt-1"> Tell us about to your business</h4> 
                           <label htmlFor="description"> </label>
                           <textarea
                             placeholder="Tell us more about your business"
@@ -215,10 +211,9 @@ const MyBusinessForm = () => {
                         <button className="btn btn-primary w-50" type="submit">
                           Submit
                         </button>
-                      </form>
-                       
-                    </div>
-                    </div>
+                    </form>
+                  </div>
+                      
     </div>
 	</Container>
   ); 
