@@ -1,0 +1,17 @@
+@media screen and (max-width: 960px) {
+
+    .mobile-bsearch-card {
+        display: flex;
+        flex-direction: column;
+        
+        
+    } 
+
+    .mobile-bcard-body {
+        width: 100% !important;
+    }
+    
+    
+
+
+}
