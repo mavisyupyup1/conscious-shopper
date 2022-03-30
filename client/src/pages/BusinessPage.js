@@ -145,7 +145,7 @@ const BusinessPage = () => {
     }
 
     return(
-        <Container>
+        <Container className='h-100'>
             <Row >
                 {!business ? <div> There is no business Data. Upgrade your account, or create a business to get full use of this page!!</div> : business.map(data => (
                     <>
@@ -223,8 +223,8 @@ const BusinessPage = () => {
             </Row>
             
 
-            <Row>
-                {loggedIn ? <Col xs={4} className='mt-2 my-2 border border-dark border-5 rounded'>
+            <Row className='my-2 h-100'>
+                {loggedIn ? <div className=' mobile-review-box  border border-dark border-5 rounded'>
                     <Form onSubmit={handleFormSubmit}>
                        
                         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -236,7 +236,7 @@ const BusinessPage = () => {
                             Submit
                         </Button>
                     </Form>
-                </Col> : 'Log in or sign up to write a review'}
+                </div> : 'Log in or sign up to write a review'}
 
 
             </Row>
