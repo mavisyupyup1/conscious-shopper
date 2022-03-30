@@ -96,6 +96,10 @@ function App() {
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/thought/:id" component={SingleThought} />
               <Route component={NoMatch} />
+              <Route path='/website' component={() => { 
+     window.location.href = 'https://example.com/1234'; 
+     return null;
+}}/>
             </Switch>
           
           <Footer />
