@@ -37,7 +37,7 @@ const HeroMain = () => {
     return (
         <>
 
-        <Carousel >
+        <Carousel indicators={false} controls={false}>
             <Carousel.Item interval={9000} >
                 <img
                 className="d-block w-100"

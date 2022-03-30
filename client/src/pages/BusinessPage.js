@@ -11,6 +11,8 @@ import { QUERY_BUSINESS, QUERY_THOUGHT, QUERY_USER } from '../utils/queries';
 import { ADD_THOUGHT, NEW_VOTE, UPDATE_VOTE } from '../utils/mutations';
 import { idbPromise } from '../utils/idb'
 
+import './BusinessPage.css'
+
 const BusinessPage = () => {
     // state and dispatch gotten from the store context
     const [state, dispatch] = useStoreContext();
@@ -144,30 +146,33 @@ const BusinessPage = () => {
 
     return(
         <Container>
-            <Row>
+            <Row >
                 {!business ? <div> There is no business Data. Upgrade your account, or create a business to get full use of this page!!</div> : business.map(data => (
                     <>
             
-                        <Col xs={8} className='mt-2 mb-2  border border-dark border-5 rounded' key={`${data._id}`}>
+                        <div className='col-8 mt-2 mb-2  border border-dark border-5 rounded mobile-aboutb-box' key={`${data._id}`}>
                             <Row>
                                 <h1>{data.title}</h1>
                             </Row>
                             <hr></hr>
                             <Row>
                             <Card.Img variant="top" src={`../images/${data.image}`} />
-                                <h3>ABOUT THE BUSINESS:</h3>
+                                <h3 className='m-2'>ABOUT THE BUSINESS:</h3>
                                 <p>{data.description}</p>
                                 <p>Lorem ipsum dolor sit amet, at pri libris iisque, menandri adipiscing sit ex. Vix ex eius decore eirmod. Omnis dicam ut pri, esse illud vim at. Brute fugit te his, id utinam impetus facilisis ius, alia minim mnesarchum et sit. An agam labore consulatu sea.</p>
                             </Row>
-                            <hr></hr>
                             <Row>
-                                <h4>Address:  {data.location}</h4>
-                                <h4>Phone Number:  {data.phone}</h4>
-                               
-                                
-                                <h4>Website:{data.links ? ( <><Button className="btn btn-primary" onClick={e => {e.preventDefault();window.location.assign(`${data.links[0]}`) }}  target="_blank">Website</Button> </>):("")}</h4>
-                                
+                            <hr></hr>
+                                <h3>Address:  </h3>
+                                <h5>{data.location} </h5>
+                                <hr></hr>
+                                <h3>Phone Number:  </h3>
+                                <h5>{data.phone} </h5>
+                                <hr></hr>
+                                <h3>Website:   {data.links ? ( <><Button className="btn btn-primary" onClick={e => {e.preventDefault();window.location.assign(`${data.links[0]}`) }}  target="_blank">Website</Button> </>):("")}</h3>
+                                <hr></hr>
                                 <h4>VoteCount: {data.voteCount}</h4> 
+                                <hr></hr>   
                                 {Auth.loggedIn() ? (
                                 <Col className="d-flex" >
                                     <Button 
@@ -190,7 +195,7 @@ const BusinessPage = () => {
                                 </Col>
                                 ) : ("")}
                                 <div>
-                                <hr></hr>   
+                                
                                     <h3>Reviews</h3>
                                     {data.thoughts &&
                                         data.thoughts.map(thought => (
@@ -211,7 +216,7 @@ const BusinessPage = () => {
                                 </div>
                                 {/* <p>{data.thoughts.map(data=>(key={thoughts._id}))}</p>             */}
                             </Row>
-                        </Col>
+                        </div>
                     </>
                     ))}
                    
