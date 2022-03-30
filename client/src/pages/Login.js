@@ -6,6 +6,8 @@ import Auth from '../utils/auth';
 
 import { Card, Badge, Button, Col, Container, Form, Row } from 'react-bootstrap';
 
+import './Login.css'
+
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -83,7 +85,7 @@ const Login = (props) => {
 
     <Container className='h-100'>
       <Row className="justify-content-md-center">
-        <Col xs="6">
+        <Col xs="6" className='mobile-login'>
           <Form onSubmit={handleFormSubmit} className="p-2 m-1 border border-dark border-5 rounded">
 
             <Form.Group className="mb-3" controlId="email">
@@ -92,7 +94,7 @@ const Login = (props) => {
               <Form.Control 
                 name="email" 
                 type="email" 
-                id="email" 
+                //id="email" 
                 value={formState.email} 
                 onChange={handleChange} 
                 placeholder="Enter email" 
@@ -108,7 +110,7 @@ const Login = (props) => {
               <Form.Control 
                 name="password"
                 type="password" 
-                id="password"
+                //id="password"
                 value={formState.password}
                 onChange={handleChange}
                 placeholder="Password" />

@@ -9,6 +9,8 @@ import {
 
 import { ADD_STRIPE } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
+import { Container } from "react-bootstrap";
+import './PaymentForm.css'
 
 const SplitForm = () => {
   const stripe = useStripe();
@@ -46,22 +48,33 @@ document.location.replace('/profile')
 
   return (
     <>
+      <Container className="h-100">
+        <div className="card mt-3 border border-dark border-5 rounded">
+          <div class="card-header">
+            Please enter your payment method
+          </div>
+          <div class="card-body">
 
-      <form onSubmit={handleSubmit}>
-        <label>
-          Card number
-        </label>   <CardNumberElement />
-        <label>
-          Expiration date
-        </label><CardExpiryElement />
-        <label>
-          CVC
-        </label>   <CardCvcElement />
-        <button className="btn d-block w-100" type="submit">
-          Pay
+            <form onSubmit={handleSubmit}>
+              <label>
+                Card number
+              </label>   <CardNumberElement />
+              <label>
+                Expiration date
+              </label><CardExpiryElement />
+              <label>
+                CVC
+              </label>   <CardCvcElement />
+              <button className="payment-btn w-100 mt-3 " type="submit">
+                Pay
 
-        </button>
-      </form>
+              </button>
+            </form>
+          </div>
+        </div>
+      </Container>
+
+      
 
 
     </>

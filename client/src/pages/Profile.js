@@ -13,6 +13,8 @@ import Auth from '../utils/auth';
 
 import { Card, Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
+import './Profile.css'
+
 const Profile = (props) => {
   const { username: userParam } = useParams();
   const [addFriend] =useMutation(ADD_FRIEND)
@@ -23,8 +25,6 @@ const Profile = (props) => {
   const loggedIn = Auth.loggedIn();
   const paidUser = userData?.me.type === "PAID"
   const hasStripeId = userData?.me.stripeId !== null
-  console.log("stripeId:", userData?.me.stripeId)
-  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
 
   const user = data?.me || data?.user || {};
 
@@ -59,7 +59,7 @@ const Profile = (props) => {
 
   return (
 
-    <Container>   
+    <Container className=''>   
     <div>
 
       {/*  VIEWING USER PROFILE - ROW*/}
@@ -76,7 +76,7 @@ const Profile = (props) => {
       
       {/*  BUSINESS FORM - ROW */}
       {loggedIn && paidUser && hasStripeId?(<><div className="row justify-content-center">
-        <div className='col-9'>
+        <div className=''>
         <MyBusinessForm/>
         </div>      
       </div></>
@@ -84,12 +84,12 @@ const Profile = (props) => {
       
       {/* THOUGHT LIST  */}
       <div className="flex-row justify-space-between mb-3">
-        <div className="col-12 mb-3 col-lg-8">
-          {/* <ThoughtList
+        {/* <div className="col-12 mb-3 col-lg-8">
+          <ThoughtList
             thoughts={user.thoughts}
             title={`${user.username}'s thoughts...`}
-          /> */}
-      </div>
+          /> 
+        </div> */}
 
                 
 
@@ -97,8 +97,8 @@ const Profile = (props) => {
 
       <div className="row justify-content-center">
 
-        <div className='col-8'>
-          <div className=" border border-dark border-5 rounded " style={{width: "45rem"}}>
+        <div className=''>
+          <div className=" border border-dark border-5 rounded ">
             <FriendList
               username={user.username}
               friendCount={user.friendCount}
