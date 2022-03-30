@@ -163,7 +163,7 @@ const BusinessPage = () => {
                             <Row>
                                 <h4>Address:  {data.location}</h4>
                                 <h4>Phone Number:  {data.phone}</h4>
-                                <h4>Website:{data.links ? ( <><Link className="btn btn-primary" to={{ pathname: `${data.links[0]}` }} target="_blank">Website</Link> </>):("")}</h4>
+                                <h4>Website:{data.links ? ( <><Button className="btn btn-primary" onClick={e => {e.preventDefault(); window.location = `${data.links[0]}`}}  target="_blank">Website</Button> </>):("")}</h4>
                                 <h4>VoteCount: {data.voteCount}</h4> 
                                 {Auth.loggedIn() ? (
                                 <Col className="d-flex" >
