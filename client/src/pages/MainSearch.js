@@ -6,6 +6,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SearchBCard from '../components/SearchBCard';
 import { idbPromise } from '../utils/idb';
 
+import './MainSearch.css'
+
 
 const MainSearch = () => {
   // destruct the state, and dispatch method from the useStoreContext method created in GlobalState
@@ -77,17 +79,19 @@ const MainSearch = () => {
 return (
     
     <Container>
-        <Row>
-          <Col xs={8} className='mb-1 mt-1'>
+        <Row className='mobile-search-page'>
+
+
+          <div className='mobile-bcard-box mb-1 mt-1 col-8'>
             {!business ? <h1>Nothing to Show for Now!!!</h1> :business.map(data => (
               <Row  className="m-1" key={`${data._id}`}>
                 <SearchBCard data={data} setOrdered={true} />
               </Row>
             ))}  
-          </Col>
+          </div>
 
 
-          <Col xs={3} className=' mb-2 mt-2 border border-dark border-5 rounded'>
+          <div className='mobile-filter-box mb-2 mt-2 col-3 border border-dark border-5 rounded'>
               <h1>FILTER</h1>
               <hr></hr>
               <h5 className="my-2">Current filter: {businessProp}</h5>
@@ -111,7 +115,9 @@ return (
                 </div>
                 <button type="submit" className="btn btn-dark m-2 d-inline-block">Submit</button>
               </form>
-          </Col>
+          </div>
+
+
         </Row>
 
     </Container>
