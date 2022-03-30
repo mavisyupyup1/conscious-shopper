@@ -94,7 +94,7 @@ const Login = (props) => {
               <Form.Control 
                 name="email" 
                 type="email" 
-                id="email" 
+                //id="email" 
                 value={formState.email} 
                 onChange={handleChange} 
                 placeholder="Enter email" 
@@ -110,7 +110,7 @@ const Login = (props) => {
               <Form.Control 
                 name="password"
                 type="password" 
-                id="password"
+                //id="password"
                 value={formState.password}
                 onChange={handleChange}
                 placeholder="Password" />

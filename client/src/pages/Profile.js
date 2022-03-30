@@ -25,8 +25,6 @@ const Profile = (props) => {
   const loggedIn = Auth.loggedIn();
   const paidUser = userData?.me.type === "PAID"
   const hasStripeId = userData?.me.stripeId !== null
-  console.log("stripeId:", userData?.me.stripeId)
-  console.log("Current user:", {loggedIn, paidUser, hasStripeId})
 
   const user = data?.me || data?.user || {};
 

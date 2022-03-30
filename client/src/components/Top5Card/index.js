@@ -58,7 +58,7 @@ var Top5Card = function ({ data, setOrdered, images }) {
                       <Card.Title className="text-center font-weight-bold">{data.title}</Card.Title>
                       <div className="d-flex flex-wrap">
                         {pill().map(element => (
-                        <Badge pill className="m-2 p-2" variant="warning">
+                        <Badge pill className="m-2 p-2" variant="warning" key={element}>
                         🔴 {element}
                         </Badge>
                         )
@@ -66,13 +66,14 @@ var Top5Card = function ({ data, setOrdered, images }) {
                       </div>
                     </div>
                     <Card.Text className="text-secondary">{data.description}</Card.Text>
+                    <hr></hr>
+                    <span className="my-2">{data.voteCount} Vote(s)</span>
                     <Button
                     onClick={(e) =>{
                       e.preventDefault()
                       document.location.replace(`/bpage/${data._id}`);
                     }}
                     className="mt-auto font-weight-bold bgcolor"
-                    
                     >
                     More Info  🔍
                     </Button>
