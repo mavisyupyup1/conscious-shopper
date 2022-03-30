@@ -37,7 +37,7 @@ const HeroMain = () => {
     return (
         <>
 
-        <Carousel >
+        <Carousel indicators={false} controls={false}>
             <Carousel.Item interval={9000} >
                 <img
                 className="d-block w-100"
@@ -47,21 +47,22 @@ const HeroMain = () => {
                 <Carousel.Caption className="mobile-caption">
             
                     <Form onSubmit={handleSearch}>
-                        <InputGroup id="citySearch" className="mb-3">
+                        <InputGroup id="citySearch" className="mobile-input-group mb-3">
                             {/*<FloatingLabel controlId="floatingInput" label="Search a CITY to shop conscious!" className="search-input"></FloatingLabel>-->*/}
-                            <FormControl  
+                            <FormControl
+                                className="w-50"  
                                 aria-label="searchCity" 
                                 placeholder="NY" 
                                 name="location" 
                                 onChange={handleChange} 
                             />
                             
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" className="searchcity-button">
                                 Search City
                             </Button>
 
-                            <Button variant="info" className="">
-                                <Nav.Link href="/search">Search All Business</Nav.Link>
+                            <Button  className="btn--outline">
+                                <Nav.Link className="allbusiness-btn" href="/search">Search All Business</Nav.Link>
                             </Button>
                         </InputGroup>
                     </Form>
