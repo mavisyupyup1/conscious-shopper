@@ -43,7 +43,10 @@ From your CLI, navigate into the root directory, server, and client folders to i
 ```
 npm install
 ```
-
+then use 
+```
+npm run develop
+```
 ## Usage
 To use Conscious Shopper online, visit [Conscious Shopper](https://enigmatic-basin-52191.herokuapp.com/). 
 
